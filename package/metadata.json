@@ -1,0 +1,25 @@
+{
+    "KPlugin": {
+        "Authors": [
+            {
+                "Email": "prayagjain2@gmail.com",
+                "Name": "Prayag Jain"
+            }
+        ],
+        "Category": "",
+        "Description": "",
+        "Icon": "",
+        "Id": "com.github.prayag2.",
+        "License": "GPLv3",
+        "Name": "",
+        "ServiceTypes": [
+            "Plasma/Applet"
+        ],
+        "Version": "0.1",
+        "Website": "https://github.com/prayag2/kde_"
+
+    },
+    "X-Plasma-API": "declarativeappletscript",
+    "X-Plasma-MainScript": "ui/main.qml",
+    "X-Plasma-Provides": ""
+}
