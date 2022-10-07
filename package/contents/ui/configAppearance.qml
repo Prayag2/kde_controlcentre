@@ -8,6 +8,7 @@ import org.kde.plasma.extras 2.0 as PlasmaExtras
 ColumnLayout {
     property alias cfg_scale: scale.value
     property alias cfg_transparency: transparency.checked
+    property alias cfg_showColorSwitcher: showColorSwitcher.checked
     
     PlasmaExtras.Heading {
         text: i18n("Settings")
@@ -31,6 +32,14 @@ ColumnLayout {
     }
     Label {
         text: i18n("Transparency might not work correctly with some themes!")
+    }
+    RowLayout {
+        Label {
+            text: i18n("Replace Night Color with Color Scheme Switcher")
+        }
+        CheckBox {
+            id: showColorSwitcher 
+        }
     }
     
     Item {

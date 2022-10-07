@@ -61,6 +61,24 @@ Item {
     Layout.minimumHeight: Layout.preferredHeight
     Layout.maximumHeight: Layout.preferredHeight
     clip: true
+
+    PlasmaCore.DataSource {
+        id: executable
+        engine: "executable"
+        connectedSources: []
+        onNewData: { 
+            disconnectSource(sourceName)
+        }
+        
+        function exec(cmd) {
+            connectSource(cmd)
+        }
+
+        function swapColorScheme() {
+            var colorSchemeName = Plasmoid.configuration.isDarkTheme ? Plasmoid.configuration.lightTheme : Plasmoid.configuration.darkTheme
+            exec("plasma-apply-colorscheme " + colorSchemeName)
+        }
+    }
     
     ColumnLayout {
         id: wrapper
@@ -239,6 +257,21 @@ Item {
                 onClicked: {
                     Funcs.toggleRedshiftInhibition();
                 }
+                visible: !Plasmoid.configuration.showColorSwitcher
+            }
+            Lib.CardButton {
+                Layout.preferredWidth: parent.width/4
+                Layout.preferredHeight: wrapper.height/4
+                title: i18n(Plasmoid.configuration.isDarkTheme ? "Light Theme" : "Dark Theme")
+                PlasmaCore.IconItem {
+                    anchors.fill: parent
+                    source: Plasmoid.configuration.isDarkTheme ? "brightness-high" : "brightness-low"
+                }
+                onClicked: {
+                    executable.swapColorScheme();
+                    Plasmoid.configuration.isDarkTheme = !Plasmoid.configuration.isDarkTheme
+                }
+                visible: Plasmoid.configuration.showColorSwitcher
             }
         }
         ColumnLayout {

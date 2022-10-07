@@ -12,5 +12,19 @@
         <entry name="transparency" type="Bool">
             <default>False</default>
         </entry>
+        <entry name="showColorSwitcher" type="bool">
+            <default>false</default>
+        </entry>
+        <entry name="isDarkTheme" type="bool">
+            <default>false</default>
+        </entry>
+        <entry name="lightTheme" type="String">
+            <label>Light Theme</label>
+            <default>BreezeLight</default>
+        </entry>
+        <entry name="darkTheme" type="String">
+            <label>Dark Theme</label>
+            <default>BreezeDark</default>
+        </entry>
     </group>
 </kcfg>
