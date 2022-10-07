@@ -16,6 +16,7 @@ import org.kde.plasma.private.nightcolorcontrol 1.0 as Redshift
 import org.kde.plasma.private.volume 0.1 as Vol
 
 import "lib" as Lib
+import "components" as Components
 import "funcs.js" as Funcs 
 
 
@@ -61,7 +62,7 @@ Item {
     Layout.minimumHeight: Layout.preferredHeight
     Layout.maximumHeight: Layout.preferredHeight
     clip: true
-    
+
     ColumnLayout {
         id: wrapper
 
@@ -227,9 +228,10 @@ Item {
                     source: "kdeconnect-tray"
                 }
                 onClicked: KdeConnect.OpenConfig.openConfiguration();
+                visible: !Plasmoid.configuration.hideKdeConnect
             }
             Lib.CardButton {
-                Layout.preferredWidth: parent.width/4
+                Layout.preferredWidth: Plasmoid.configuration.hideKdeConnect ? parent.width/2 : parent.width/4
                 Layout.preferredHeight: wrapper.height/4
                 title: i18n("Night Color")
                 PlasmaCore.IconItem {
@@ -239,6 +241,10 @@ Item {
                 onClicked: {
                     Funcs.toggleRedshiftInhibition();
                 }
+                visible: !Plasmoid.configuration.showColorSwitcher
+            }
+            Components.ColorSchemeSwitcher {
+                visible: Plasmoid.configuration.showColorSwitcher
             }
         }
         ColumnLayout {
