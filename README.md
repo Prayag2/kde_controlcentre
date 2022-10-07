@@ -31,6 +31,7 @@
 
 ## Support Me ♥
 If you liked this, then please consider supporting me!
+<br>
 <noscript><a href="https://liberapay.com/Prayag/donate"><img alt="Donate using Liberapay" src="https://liberapay.com/assets/widgets/donate.svg"></a></noscript>
-<script type='text/javascript' alt="Buy Me A Coffee!" src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script><script type='text/javascript'>kofiwidget2.init('Support Me on Ko-fi', '#29abe0', 'O5O1FJ70D');kofiwidget2.draw();</script> 
+<a href='https://ko-fi.com/O5O1FJ70D' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://cdn.ko-fi.com/cdn/kofi2.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
 <a href="https://coindrop.to/prayagjain" target="_blank"><img src="https://github.com/Prayag2/kde_controlcentre/blob/main/package/contents/assets/Paypal.png?raw=true" style="border-radius: 10px; height: 57px !important;width: 229px !important;" alt="PayPal"></img></a>
