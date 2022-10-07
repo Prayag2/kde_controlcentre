@@ -16,6 +16,7 @@ import org.kde.plasma.private.nightcolorcontrol 1.0 as Redshift
 import org.kde.plasma.private.volume 0.1 as Vol
 
 import "lib" as Lib
+import "components" as Components
 import "funcs.js" as Funcs 
 
 
@@ -62,24 +63,6 @@ Item {
     Layout.maximumHeight: Layout.preferredHeight
     clip: true
 
-    PlasmaCore.DataSource {
-        id: executable
-        engine: "executable"
-        connectedSources: []
-        onNewData: { 
-            disconnectSource(sourceName)
-        }
-        
-        function exec(cmd) {
-            connectSource(cmd)
-        }
-
-        function swapColorScheme() {
-            var colorSchemeName = Plasmoid.configuration.isDarkTheme ? Plasmoid.configuration.lightTheme : Plasmoid.configuration.darkTheme
-            exec("plasma-apply-colorscheme " + colorSchemeName)
-        }
-    }
-    
     ColumnLayout {
         id: wrapper
 
@@ -260,18 +243,7 @@ Item {
                 }
                 visible: !Plasmoid.configuration.showColorSwitcher
             }
-            Lib.CardButton {
-                Layout.preferredWidth: Plasmoid.configuration.hideKdeConnect ? parent.width/2 : parent.width/4
-                Layout.preferredHeight: wrapper.height/4
-                title: i18n(Plasmoid.configuration.isDarkTheme ? "Light Theme" : "Dark Theme")
-                PlasmaCore.IconItem {
-                    anchors.fill: parent
-                    source: Plasmoid.configuration.isDarkTheme ? "brightness-high" : "brightness-low"
-                }
-                onClicked: {
-                    executable.swapColorScheme();
-                    Plasmoid.configuration.isDarkTheme = !Plasmoid.configuration.isDarkTheme
-                }
+            Components.ColorSchemeSwitcher {
                 visible: Plasmoid.configuration.showColorSwitcher
             }
         }
