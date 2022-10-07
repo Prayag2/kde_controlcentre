@@ -28,3 +28,9 @@
 `git clone https://github.com/prayag2/kde_controlcentre && cd kde_controlcentre/`
 2. Install using the script
 `kpackagetool5 -i package`
+
+## Support Me ♥
+If you liked this, then please consider supporting me!
+<noscript><a href="https://liberapay.com/Prayag/donate"><img alt="Donate using Liberapay" src="https://liberapay.com/assets/widgets/donate.svg"></a></noscript>
+<script type='text/javascript' alt="Buy Me A Coffee!" src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script><script type='text/javascript'>kofiwidget2.init('Support Me on Ko-fi', '#29abe0', 'O5O1FJ70D');kofiwidget2.draw();</script> 
+<a href="https://coindrop.to/prayagjain" target="_blank"><img src="https://github.com/Prayag2/kde_controlcentre/blob/main/package/contents/assets/Paypal.png?raw=true" style="border-radius: 10px; height: 57px !important;width: 229px !important;" alt="PayPal"></img></a>
