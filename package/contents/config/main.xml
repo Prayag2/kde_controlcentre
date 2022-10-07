@@ -6,11 +6,11 @@
       http://www.kde.org/standards/kcfg/1.0/kcfg.xsd" >
     <kcfgfile name=""/>
     <group name="Appearance">
-        <entry name="border_radius" type="Int">
-            <default>10</default>
+        <entry name="scale" type="Int">
+            <default>120</default>
         </entry>
-        <entry name="spacing" type="Int">
-            <default>10</default>
+        <entry name="transparency" type="Bool">
+            <default>False</default>
         </entry>
     </group>
 </kcfg>

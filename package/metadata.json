@@ -8,14 +8,14 @@
         ],
         "Category": "Utilities",
         "Description": "A control centre inspired by MacOS!",
-        "Icon": "settings-configure",
+        "Icon": "configure-toolbars",
         "Id": "com.github.prayag2.controlcentre",
         "License": "GPLv3",
         "Name": "Control Centre",
         "ServiceTypes": [
             "Plasma/Applet"
         ],
-        "Version": "0.1",
+        "Version": "0.0.1",
         "Website": "https://github.com/prayag2/kde_controlcentre"
 
     },
