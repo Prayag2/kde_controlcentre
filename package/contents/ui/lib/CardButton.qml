@@ -13,7 +13,7 @@ Card {
     GridLayout {
         anchors.fill: parent
         property bool small: width < root.fullRepWidth/4
-        anchors.margins: small ? root.gridMargin : root.margin
+        anchors.margins: small ? root.smallSpacing : root.largeSpacing
         rows: small ? 2 : 1
         columns: small ? 1 : 2
         columnSpacing: small ? 0 : 10
@@ -21,14 +21,14 @@ Card {
 
         Item {
             id: icon
-            Layout.preferredHeight: parent.small ? parent.height/2 : parent.height - root.margin
+            Layout.preferredHeight: parent.small ? parent.height/2-root.smallSpacing: parent.height - root.largeSpacing
             Layout.preferredWidth: Layout.preferredHeight
             Layout.alignment: Qt.AlignHCenter
         }
         PlasmaComponents.Label {
             id: title
             Layout.fillWidth: true
-            font.pixelSize: parent.small ? root.buttonSubtitleFontSize : root.buttonTitleFontSize
+            font.pixelSize: parent.small ? root.mediumFontSize : root.largeFontSize
             font.weight: parent.small ? Font.Normal : Font.Bold
             horizontalAlignment: parent.small ? Qt.AlignHCenter : Qt.AlignLeft
             wrapMode: Text.WordWrap

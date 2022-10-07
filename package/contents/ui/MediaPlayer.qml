@@ -7,49 +7,129 @@ import "lib" as Lib
 Lib.Card {
     id: mediaPlayer
     Layout.preferredWidth: parent.width
-    Layout.preferredHeight: sectionA.height/2
+    Layout.preferredHeight: wrapper.height/4
+    
+    PlasmaCore.DataSource {
+        id: musicSource
+        engine: "mpris2"
+        
+        onDataChanged: {
+            connectedSources = ["@multiplex"]
+            var audioData = data["@multiplex"]
+            var playing = audioData["PlaybackStatus"] === "Playing"
+            
+            
+            // show if and only if the audio source exists and the audio is currently playing
+            if (audioData && playing) {
+                
+                var audioMetadata = audioData["Metadata"]
+                var title = audioMetadata["xesam:title"]
+                var artist = audioMetadata["xesam:artist"]
+                var thumb = audioMetadata["mpris:artUrl"]   
+                
+                audioTitle.text = title ? title : i18n("Unknown Media")
+                audioThumb.source = thumb ? thumb : "../assets/music.png"
+                
+                audioArtist.visible = true
+                audioThumb.visible = true
+                audioControls.visible = true
+                audioTitle.horizontalAlignment = Qt.AlignLeft
+                playIcon.source = "media-playback-pause"
+                try {
+                    audioArtist.text = artist.join(", ")
+                } catch(err) {
+                    audioArtist.text = artist ? artist : i18n("Unknown Artist")
+                } 
+            } else {
+                playIcon.source = "media-playback-start"
+            }
+        }
+        onSourcesChanged: {
+            dataChanged()
+        }
+        onSourceRemoved: {
+            audioArtist.visible = false
+            audioThumb.visible = false
+            audioControls.visible = false
+            audioTitle.horizontalAlignment = Qt.AlignHCenter
+            audioTitle.text = i18n("No Media Playing")
+            dataChanged()
+        }
+        Component.onCompleted: {
+            audioArtist.visible = false
+            audioThumb.visible = false
+            audioControls.visible = false
+            audioTitle.horizontalAlignment = Qt.AlignHCenter
+            audioTitle.text = i18n("No Media Playing")
+            dataChanged()
+        }
+    }
+
+    function action(src, op) {
+        var service = musicSource.serviceForSource(src);
+        var operation = service.operationDescription(op);
+        return service.startOperationCall(operation);
+    }
 
     RowLayout {
         anchors.fill: parent
-        anchors.margins: root.margin
+        anchors.margins: root.largeSpacing
 
         Image {
+            id: audioThumb
+            fillMode: Image.PreserveAspectCrop
             Layout.fillHeight: true
             Layout.preferredWidth: height
-            source: 'https://upload.wikimedia.org/wikipedia/en/b/b9/The_Weeknd_-_Dawn_FM.png'
         }
         ColumnLayout {
             id: mediaNameWrapper
-            Layout.margins: root.gridMargin
+            Layout.margins: root.smallSpacing
             Layout.fillHeight: true
             spacing: 0
 
             PlasmaComponents.Label {
-                text: "Is there someone else?"
+                id: audioTitle
                 Layout.fillWidth: true
                 font.capitalization: Font.Capitalize
                 font.weight: Font.Bold
-                font.pixelSize: root.buttonTitleFontSize
+                font.pixelSize: root.largeFontSize
+                horizontalAlignment: Text.AlignHCenter
                 elide: Text.ElideRight
             }
             PlasmaComponents.Label {
-                text: "The Weeknd"
+                id: audioArtist
                 Layout.fillWidth: true
-                font.pixelSize: root.buttonSubtitleFontSize
+                font.pixelSize: root.mediumFontSize
             }
         }
         RowLayout {
+            id: audioControls
             Layout.alignment: Qt.AlignRight
 
             PlasmaCore.IconItem {
+                id: playIcon
                 Layout.preferredHeight: mediaNameWrapper.implicitHeight
                 Layout.preferredWidth: height
                 source: "media-playback-start"
+                
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: {
+                        mediaPlayer.action(musicSource.connectedSources, "PlayPause")
+                    }
+                }
             }
             PlasmaCore.IconItem {
                 Layout.preferredHeight: mediaNameWrapper.implicitHeight
                 Layout.preferredWidth: height
                 source: "media-skip-forward"
+                
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: {
+                        mediaPlayer.action(musicSource.connectedSources, "Next")
+                    }
+                }
             }
         }
     }

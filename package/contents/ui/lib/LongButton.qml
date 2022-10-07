@@ -13,8 +13,8 @@ PlasmaCore.FrameSvgItem {
     prefix: mouseArea.containsMouse ? (mouseArea.pressed ? "selected+hover" : "hover") : "normal"
     Layout.fillWidth: true
     Layout.preferredHeight: root.buttonHeight
-    Layout.rightMargin: root.gridMargin
-    Layout.leftMargin: root.gridMargin
+    Layout.rightMargin: root.smallSpacing
+    Layout.leftMargin: root.smallSpacing
     signal clicked;
 
     property alias title: title.text
@@ -22,10 +22,6 @@ PlasmaCore.FrameSvgItem {
     property alias source: icon.source
 
     property int margin: root.buttonMargin
-
-    DeRect {
-        border.color: "yellow"
-    }
 
     GridLayout {
         rows: 2; columns: 2
@@ -37,21 +33,21 @@ PlasmaCore.FrameSvgItem {
         Icon {
             id: icon
             Layout.rowSpan: 2
-            Layout.preferredHeight: parent.height - root.buttonIconMargin
+            Layout.preferredHeight: parent.height - root.smallSpacing //
             Layout.preferredWidth: Layout.preferredHeight
         }
 
         PlasmaComponents.Label {
             id: title
             Layout.fillWidth: true
-            font.pixelSize: root.buttonTitleFontSize
+            font.pixelSize: root.largeFontSize
             font.weight: Font.Bold
             elide: Text.ElideRight
         }
         PlasmaComponents.Label {
             id: subtitle
             Layout.fillWidth: true
-            font.pixelSize: root.buttonSubtitleFontSize
+            font.pixelSize: root.mediumFontSize
             elide: Text.ElideRight
         }
     }

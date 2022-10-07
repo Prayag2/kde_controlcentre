@@ -12,9 +12,6 @@ Rectangle {
     property var margins: rect.margins
     default property alias content: dataContainer.data
 
-    DeRect {
-        border.color: "red"
-    }
 
     PlasmaCore.FrameSvgItem {
         id: rect
@@ -22,10 +19,10 @@ Rectangle {
         imagePath: root.enableTransparency ? "translucent/dialogs/background" : "opaque/dialogs/background"
         clip: true
         anchors.fill: parent
-        anchors.topMargin: rect.margins.top
-        anchors.leftMargin: rect.margins.left
-        anchors.rightMargin: rect.margins.right
-        anchors.bottomMargin: rect.margins.bottom
+        anchors.topMargin: rect.margins.top * root.scale
+        anchors.leftMargin: rect.margins.left * root.scale
+        anchors.rightMargin: rect.margins.right * root.scale
+        anchors.bottomMargin: rect.margins.bottom * root.scale
 
         Item {
             id: dataContainer

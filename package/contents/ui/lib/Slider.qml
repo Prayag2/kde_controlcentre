@@ -17,33 +17,33 @@ Card {
 
     ColumnLayout {
         anchors.fill: parent
-        anchors.margins: root.margin
+        anchors.margins: root.largeSpacing
         clip: true
 
         PlasmaComponents.Label {
             id: title
             Layout.fillHeight: true
             Layout.fillWidth: true
-            font.pixelSize: root.buttonTitleFontSize
+            font.pixelSize: root.largeFontSize
             font.weight: Font.Bold
             font.capitalization: Font.Capitalize
         }
         RowLayout {
             Layout.fillHeight: true
             Layout.fillWidth: true
-            spacing: PlasmaCore.Units.mediumSpacing
+            spacing: root.smallSpacing
 
             PlasmaCore.IconItem {
                 id: icon
-                Layout.preferredHeight: parent.height
-                Layout.preferredWidth: width
+                Layout.preferredHeight: root.largeFontSize*2
+                Layout.preferredWidth: Layout.preferredHeight
             }
             PlasmaComponents.Slider {
                 id: slider
                 Layout.fillHeight: true
                 Layout.fillWidth: true
                 from: sliderComp.from
-                to: sliderCopm.to
+                to: sliderComp.to
                 onMoved: {
                     sliderComp.moved()
                 }

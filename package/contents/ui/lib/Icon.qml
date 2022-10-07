@@ -11,7 +11,8 @@ Rectangle {
     PlasmaCore.IconItem {
         id: icon
         anchors.fill: parent
-        anchors.margins: root.buttonIconMargin
+        anchors.margins: root.smallSpacing //
+        anchors.centerIn: parent
     }
     ColorOverlay {
         source: icon
