@@ -26,5 +26,8 @@
             <label>Dark Theme</label>
             <default>BreezeDark</default>
         </entry>
+        <entry name="hideKdeConnect" type="bool">
+            <default>true</default>
+        </entry>
     </group>
 </kcfg>

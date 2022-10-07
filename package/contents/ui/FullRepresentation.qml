@@ -245,9 +245,10 @@ Item {
                     source: "kdeconnect-tray"
                 }
                 onClicked: KdeConnect.OpenConfig.openConfiguration();
+                visible: !Plasmoid.configuration.hideKdeConnect
             }
             Lib.CardButton {
-                Layout.preferredWidth: parent.width/4
+                Layout.preferredWidth: Plasmoid.configuration.hideKdeConnect ? parent.width/2 : parent.width/4
                 Layout.preferredHeight: wrapper.height/4
                 title: i18n("Night Color")
                 PlasmaCore.IconItem {
@@ -260,7 +261,7 @@ Item {
                 visible: !Plasmoid.configuration.showColorSwitcher
             }
             Lib.CardButton {
-                Layout.preferredWidth: parent.width/4
+                Layout.preferredWidth: Plasmoid.configuration.hideKdeConnect ? parent.width/2 : parent.width/4
                 Layout.preferredHeight: wrapper.height/4
                 title: i18n(Plasmoid.configuration.isDarkTheme ? "Light Theme" : "Dark Theme")
                 PlasmaCore.IconItem {

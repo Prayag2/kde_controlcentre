@@ -9,6 +9,7 @@ ColumnLayout {
     property alias cfg_scale: scale.value
     property alias cfg_transparency: transparency.checked
     property alias cfg_showColorSwitcher: showColorSwitcher.checked
+    property alias cfg_hideKdeConnect: hideKdeConnect.checked
     
     PlasmaExtras.Heading {
         text: i18n("Settings")
@@ -39,6 +40,14 @@ ColumnLayout {
         }
         CheckBox {
             id: showColorSwitcher 
+        }
+    }
+    RowLayout {
+        Label {
+            text: i18n("Hide KDE Connect")
+        }
+        CheckBox {
+            id: hideKdeConnect 
         }
     }
     
