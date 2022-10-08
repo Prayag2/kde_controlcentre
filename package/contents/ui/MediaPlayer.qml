@@ -107,6 +107,19 @@ Lib.Card {
             Layout.alignment: Qt.AlignRight
 
             PlasmaCore.IconItem {
+                Layout.preferredHeight: mediaNameWrapper.implicitHeight
+                Layout.preferredWidth: height
+                source: "media-skip-backward"
+                
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: {
+                        mediaPlayer.action(musicSource.connectedSources, "Previous")
+                    }
+                }
+            }
+
+            PlasmaCore.IconItem {
                 id: playIcon
                 Layout.preferredHeight: mediaNameWrapper.implicitHeight
                 Layout.preferredWidth: height
