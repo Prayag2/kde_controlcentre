@@ -14,6 +14,13 @@
   <img src="https://github.com/Prayag2/kde_controlcentre/blob/main/assets/ss.png"/>
 </p>
 
+## Requirements
+
+- A Linux distribution with KDE Plasma version 5.20 or higher
+- Qt version 5.15 or higher
+- KDE Frameworks version 5.78 or higher
+- plasma-nm and kdeplasma-addons
+
 ## Installation
 #### KDE Store (Preferred way)
 1. Right click on the desktop
