@@ -7,7 +7,8 @@ import "lib" as Lib
 Lib.Card {
     id: mediaPlayer
     Layout.preferredWidth: parent.width
-    Layout.preferredHeight: wrapper.height/4
+    // Layout.preferredHeight: wrapper.height/4
+    Layout.preferredHeight: sectionA.height/2
     
     PlasmaCore.DataSource {
         id: musicSource

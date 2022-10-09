@@ -3,6 +3,7 @@ import QtQuick 2.0
 import QtQuick.Layouts 1.15
 import QtQuick.Controls 2.0
 
+// Doing so many private imports can break the applet very easily but I have no choice.
 import org.kde.plasma.plasmoid 2.0
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.extras 2.0 as PlasmaExtras
@@ -56,13 +57,106 @@ Item {
     
     // PROPERTIES
     Layout.preferredWidth: root.fullRepWidth
-    Layout.preferredHeight: root.fullRepHeight
+    Layout.preferredHeight: wrapper.implicitHeight
     Layout.minimumWidth: Layout.preferredWidth
     Layout.maximumWidth: Layout.preferredWidth
     Layout.minimumHeight: Layout.preferredHeight
     Layout.maximumHeight: Layout.preferredHeight
+    property var scale: root.scale
     clip: true
-
+    
+    
+     function toggleNetworkSection() {
+        if(!sectionNetworks.visible) {
+            // sectionButtons.visible = false
+            sectionNetworks.visible = true
+        } else {
+            // sectionButtons.visible = true
+            sectionNetworks.visible = false
+        }
+    }
+    
+    Component.onCompleted: {
+        wrapper.visible = true
+        message.visible = false
+    }
+    onScaleChanged: {
+        wrapper.visible = false
+        message.visible = true
+    }
+    
+    Item {
+        id: message
+        anchors.fill: parent
+        visible: false
+        
+        PlasmaComponents.Label {
+            anchors.centerIn: parent
+            anchors.fill: parent
+            text: "The scale was changed. Please reload plasmashell or log-out and log-in again."
+            font.pixelSize: root.mediumFontSize
+            wrapMode: Text.WordWrap
+            verticalAlignment: Text.AlignVCenter
+        }
+    }
+    
+    Lib.Card {
+        id: sectionNetworks
+        height: wrapper.height
+        width: wrapper.width
+        z: 999
+        visible: false
+        
+        
+        Item {
+            anchors.fill: parent
+            anchors.margins: root.smallSpacing
+            clip: true
+            
+            ListView {
+                anchors.fill: parent
+                ScrollBar.vertical: ScrollBar {}
+                
+                
+                model: fullRep.network.appletProxyModel
+                delegate: ConnectionItem {
+                    width: parent.width
+                    height: root.buttonHeight
+                }
+                header: ColumnLayout {
+                    width: parent.width
+                    RowLayout{
+                        height: implicitHeight + root.smallSpacing
+                        PlasmaComponents.ToolButton {
+                            Layout.preferredHeight: root.largeFontSize*2.5
+                            iconSource: "arrow-left"
+                            
+                            onClicked: {
+                                fullRep.toggleNetworkSection()
+                            }
+                        }
+                        PlasmaComponents.Label {
+                            text: i18n("Network Connections")
+                            font.pixelSize: root.largeFontSize * 1.2
+                            Layout.fillWidth: true
+                        }
+                    }
+                    PlasmaCore.SvgItem {
+                        id: separatorLine
+                        elementId: "horizontal-line"
+                        Layout.fillWidth: true
+                        Layout.preferredHeight: root.scale
+                        svg: PlasmaCore.Svg {
+                            imagePath: "widgets/line"
+                        }
+                    }
+                    Rectangle {
+                        height: root.smallSpacing
+                    }
+                }
+            }
+        }
+    }
     ColumnLayout {
         id: wrapper
 
@@ -78,80 +172,16 @@ Item {
             rows: 2
             Layout.preferredWidth: wrapper.width
             
-            function toggleNetworkSection() {
-                if(!sectionNetworks.visible) {
-                    sectionButtons.visible = false
-                    sectionNetworks.visible = true
-                } else {
-                    sectionButtons.visible = true
-                    sectionNetworks.visible = false
-                }
-            }
-
-            Lib.Card {
-                id: sectionNetworks
-                Layout.columnSpan: 2
-                Layout.rowSpan: 2
-                Layout.preferredWidth: parent.width
-                Layout.preferredHeight: wrapper.height
-                visible:  false
-                
-                Item {
-                    anchors.fill: parent
-                    anchors.margins: root.smallSpacing
-                    clip: true
-                    
-                    ListView {
-                        anchors.fill: parent
-                        ScrollBar.vertical: ScrollBar {}
-                        
-                        
-                        model: fullRep.network.appletProxyModel
-                        delegate: ConnectionItem {
-                            width: parent.width
-                            height: root.buttonHeight
-                        }
-                        header: ColumnLayout {
-                            width: parent.width
-                            RowLayout{
-                                height: implicitHeight + root.smallSpacing
-                                PlasmaComponents.ToolButton {
-                                    Layout.preferredHeight: root.largeFontSize*2.5
-                                    iconSource: "arrow-left"
-                                    
-                                    onClicked: {
-                                        sectionA.toggleNetworkSection()
-                                    }
-                                }
-                                PlasmaComponents.Label {
-                                    text: i18n("Network Connections")
-                                    font.pixelSize: root.largeFontSize * 1.2
-                                    Layout.fillWidth: true
-                                }
-                            }
-                            PlasmaCore.SvgItem {
-                                id: separatorLine
-                                elementId: "horizontal-line"
-                                Layout.fillWidth: true
-                                Layout.preferredHeight: root.scale
-                                svg: PlasmaCore.Svg {
-                                    imagePath: "widgets/line"
-                                }
-                            }
-                            Rectangle {
-                                height: root.smallSpacing
-                            }
-                        }
-                    }
-                }
-            }
             Lib.Card {
                 id: sectionButtons
                 Layout.columnSpan: 2
                 Layout.rowSpan: 2
                 Layout.preferredWidth: parent.width/2
-                // Layout.preferredHeight: buttonsColumn.implicitHeight + margins.top*2*root.scale + margins.bottom*2*root.scale
-                Layout.preferredHeight: wrapper.height/2
+                Layout.alignment: Qt.AlignTop
+                Layout.preferredHeight: buttonsColumn.implicitHeight + margins.top*2*root.scale + margins.bottom*2*root.scale
+                // Layout.preferredHeight: root.buttonHeight+root.smallSpacing*2+root.buttonMargin*2
+                // Layout.preferredHeight: root.buttonHeight*3 + margins.top*2*root.scale + margins.bottom*2*root.scale
+                // Layout.preferredHeight: wrapper.height/2
                 
                 ColumnLayout {
                     id: buttonsColumn
@@ -164,8 +194,9 @@ Item {
                         title: i18n("Network")
                         subtitle: fullRep.network.networkStatus
                         source: fullRep.network.activeConnectionIcon
+                        // visible: false
                         onClicked: {
-                            sectionA.toggleNetworkSection()
+                            fullRep.toggleNetworkSection()
                         }
                     }
                     Lib.LongButton {
@@ -190,7 +221,8 @@ Item {
             Lib.CardButton {
                 Layout.columnSpan: 2
                 Layout.preferredWidth: parent.width/2
-                Layout.preferredHeight: wrapper.height/4
+                // Layout.preferredHeight: wrapper.height/4
+                Layout.preferredHeight: parent.height/2
                 title: i18n("Do Not Disturb")
                 Component.onCompleted: updateIcon()
                 
@@ -221,7 +253,8 @@ Item {
             }
             Lib.CardButton {
                 Layout.preferredWidth: parent.width/4
-                Layout.preferredHeight: wrapper.height/4
+                // Layout.preferredHeight: wrapper.height/4
+                Layout.preferredHeight: parent.height/2
                 title: i18n("KDE Connect")
                 PlasmaCore.IconItem {
                     anchors.fill: parent
@@ -232,7 +265,8 @@ Item {
             }
             Lib.CardButton {
                 Layout.preferredWidth: Plasmoid.configuration.hideKdeConnect ? parent.width/2 : parent.width/4
-                Layout.preferredHeight: wrapper.height/4
+                // Layout.preferredHeight: wrapper.height/4
+                Layout.preferredHeight: parent.height/2
                 title: i18n("Night Color")
                 PlasmaCore.IconItem {
                     anchors.fill: parent
@@ -255,7 +289,8 @@ Item {
 
             Lib.Slider {
                 Layout.preferredWidth: parent.width
-                Layout.preferredHeight: wrapper.height/4
+                // Layout.preferredHeight: wrapper.height/4
+                Layout.preferredHeight: sectionA.height/2
                 property var sink: fullRep.paSinkModel.preferredSink
                 title: i18n("Volume")
                 value: (sink.volume / Vol.PulseAudio.NormalVolume * 100)

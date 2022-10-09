@@ -13,7 +13,7 @@ Lib.CardButton {
     id: colorSchemeSwitcher
 
     Layout.preferredWidth: Plasmoid.configuration.hideKdeConnect ? parent.width/2 : parent.width/4
-    Layout.preferredHeight: wrapper.height/4
+    Layout.preferredHeight: parent.height/2
     title: i18n(Plasmoid.configuration.isDarkTheme ? "Light Theme" : "Dark Theme")
     PlasmaCore.IconItem {
         anchors.fill: parent

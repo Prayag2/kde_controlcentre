@@ -22,6 +22,7 @@ PlasmaCore.FrameSvgItem {
     property alias source: icon.source
 
     property int margin: root.buttonMargin
+    // property int margin: 0
 
     GridLayout {
         rows: 2; columns: 2

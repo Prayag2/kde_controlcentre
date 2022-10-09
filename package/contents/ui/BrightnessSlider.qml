@@ -7,9 +7,10 @@ import "lib" as Lib
 
 
 Lib.Slider {
-    visible: root.isBrightnessAvailable
+    // visible: root.isBrightnessAvailable
     Layout.preferredWidth: parent.width
-    Layout.preferredHeight: wrapper.height/4
+    // Layout.preferredHeight: wrapper.height/4
+    Layout.preferredHeight: sectionA.height/2
     title: "Display Brightness"
     source: "brightness-high"
     from: 0
