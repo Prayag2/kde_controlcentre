@@ -13,6 +13,8 @@ Lib.Slider {
     Layout.preferredHeight: sectionA.height/2
     title: "Display Brightness"
     source: "brightness-high"
+    secondaryTitle: Math.round((root.screenBrightness / root.maximumScreenBrightness)*100) + "%"
+    spacerWidth: 150 * root.scale
     from: 0
     to: root.maximumScreenBrightness
     value: root.screenBrightness
