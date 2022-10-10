@@ -20,6 +20,7 @@ Item {
     property var scale: plasmoid.configuration.scale * PlasmaCore.Units.devicePixelRatio / 100
     property int fullRepWidth: 300 * scale
     property int fullRepHeight: 300 * scale
+    property int sectionHeight: 150 * scale
 
     property int largeSpacing: 10 * scale
     property int mediumSpacing: 7 * scale

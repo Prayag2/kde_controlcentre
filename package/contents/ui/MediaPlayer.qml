@@ -8,7 +8,8 @@ Lib.Card {
     id: mediaPlayer
     Layout.preferredWidth: parent.width
     // Layout.preferredHeight: wrapper.height/4
-    Layout.preferredHeight: sectionA.height/2
+    // Layout.preferredHeight: sectionA.height/2
+    Layout.preferredHeight: root.sectionHeight/2
     
     PlasmaCore.DataSource {
         id: musicSource

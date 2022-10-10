@@ -57,7 +57,7 @@ Item {
     
     // PROPERTIES
     Layout.preferredWidth: root.fullRepWidth
-    Layout.preferredHeight: wrapper.implicitHeight
+    Layout.preferredHeight: root.sectionHeight + sectionB.implicitHeight
     Layout.minimumWidth: Layout.preferredWidth
     Layout.maximumWidth: Layout.preferredWidth
     Layout.minimumHeight: Layout.preferredHeight
@@ -68,45 +68,19 @@ Item {
     
      function toggleNetworkSection() {
         if(!sectionNetworks.visible) {
-            // sectionButtons.visible = false
+            wrapper.visible = false
             sectionNetworks.visible = true
         } else {
-            // sectionButtons.visible = true
+            wrapper.visible = true
             sectionNetworks.visible = false
-        }
-    }
-    
-    Component.onCompleted: {
-        wrapper.visible = true
-        message.visible = false
-    }
-    onScaleChanged: {
-        wrapper.visible = false
-        message.visible = true
-    }
-    
-    Item {
-        id: message
-        anchors.fill: parent
-        visible: false
-        
-        PlasmaComponents.Label {
-            anchors.centerIn: parent
-            anchors.fill: parent
-            text: "The scale was changed. Please reload plasmashell or log-out and log-in again."
-            font.pixelSize: root.mediumFontSize
-            wrapMode: Text.WordWrap
-            verticalAlignment: Text.AlignVCenter
         }
     }
     
     Lib.Card {
         id: sectionNetworks
-        height: wrapper.height
-        width: wrapper.width
+        anchors.fill: parent
         z: 999
         visible: false
-        
         
         Item {
             anchors.fill: parent
@@ -171,6 +145,8 @@ Item {
             columns: 4
             rows: 2
             Layout.preferredWidth: wrapper.width
+            Layout.preferredHeight: root.sectionHeight
+            Layout.maximumHeight: root.sectionHeight
             
             Lib.Card {
                 id: sectionButtons
@@ -178,11 +154,7 @@ Item {
                 Layout.rowSpan: 2
                 Layout.preferredWidth: parent.width/2
                 Layout.alignment: Qt.AlignTop
-                Layout.preferredHeight: buttonsColumn.implicitHeight + margins.top*2*root.scale + margins.bottom*2*root.scale
-                // Layout.preferredHeight: root.buttonHeight+root.smallSpacing*2+root.buttonMargin*2
-                // Layout.preferredHeight: root.buttonHeight*3 + margins.top*2*root.scale + margins.bottom*2*root.scale
-                // Layout.preferredHeight: wrapper.height/2
-                
+                Layout.fillHeight: true
                 ColumnLayout {
                     id: buttonsColumn
                     anchors.fill: parent
@@ -194,7 +166,6 @@ Item {
                         title: i18n("Network")
                         subtitle: fullRep.network.networkStatus
                         source: fullRep.network.activeConnectionIcon
-                        // visible: false
                         onClicked: {
                             fullRep.toggleNetworkSection()
                         }
@@ -203,7 +174,6 @@ Item {
                         title: i18n("Bluetooth")
                         subtitle: Funcs.getBtDevice()
                         source: "network-bluetooth"
-                        
                         onClicked: {
                             Funcs.toggleBluetooth()
                         }
@@ -221,8 +191,7 @@ Item {
             Lib.CardButton {
                 Layout.columnSpan: 2
                 Layout.preferredWidth: parent.width/2
-                // Layout.preferredHeight: wrapper.height/4
-                Layout.preferredHeight: parent.height/2
+                Layout.fillHeight: true
                 title: i18n("Do Not Disturb")
                 Component.onCompleted: updateIcon()
                 
@@ -253,8 +222,7 @@ Item {
             }
             Lib.CardButton {
                 Layout.preferredWidth: parent.width/4
-                // Layout.preferredHeight: wrapper.height/4
-                Layout.preferredHeight: parent.height/2
+                Layout.fillHeight: true
                 title: i18n("KDE Connect")
                 PlasmaCore.IconItem {
                     anchors.fill: parent
@@ -265,7 +233,6 @@ Item {
             }
             Lib.CardButton {
                 Layout.preferredWidth: Plasmoid.configuration.hideKdeConnect ? parent.width/2 : parent.width/4
-                // Layout.preferredHeight: wrapper.height/4
                 Layout.preferredHeight: parent.height/2
                 title: i18n("Night Color")
                 PlasmaCore.IconItem {
@@ -289,8 +256,7 @@ Item {
 
             Lib.Slider {
                 Layout.preferredWidth: parent.width
-                // Layout.preferredHeight: wrapper.height/4
-                Layout.preferredHeight: sectionA.height/2
+                Layout.preferredHeight: root.sectionHeight/2
                 property var sink: fullRep.paSinkModel.preferredSink
                 title: i18n("Volume")
                 value: (sink.volume / Vol.PulseAudio.NormalVolume * 100)

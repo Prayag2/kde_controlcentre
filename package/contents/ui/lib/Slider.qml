@@ -24,7 +24,8 @@ Card {
         clip: true
 
         RowLayout {
-            anchors.fill: parent
+            Layout.fillHeight: true
+            Layout.fillWidth: true
             spacing: root.smallSpacing
 
             PlasmaComponents.Label {

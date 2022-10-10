@@ -12,7 +12,7 @@ PlasmaCore.FrameSvgItem {
     imagePath: "widgets/viewitem"
     prefix: mouseArea.containsMouse ? (mouseArea.pressed ? "selected+hover" : "hover") : "normal"
     Layout.fillWidth: true
-    Layout.preferredHeight: root.buttonHeight
+    Layout.fillHeight: true
     Layout.rightMargin: root.smallSpacing
     Layout.leftMargin: root.smallSpacing
     signal clicked;
@@ -22,7 +22,6 @@ PlasmaCore.FrameSvgItem {
     property alias source: icon.source
 
     property int margin: root.buttonMargin
-    // property int margin: 0
 
     GridLayout {
         rows: 2; columns: 2
