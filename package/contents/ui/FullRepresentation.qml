@@ -294,6 +294,8 @@ Item {
                 property var sink: fullRep.paSinkModel.preferredSink
                 title: i18n("Volume")
                 value: (sink.volume / Vol.PulseAudio.NormalVolume * 100)
+                secondaryTitle: Math.round(sink.volume / Vol.PulseAudio.NormalVolume * 100) + "%"
+                spacerWidth: 200 * root.scale
                 source: sink && !(sink && sink.name == "auto_null") ? Funcs.volIconName(sink.volume, sink.muted) : "player-volume-muted"
                 onMoved: {
                     sink.volume = value * Vol.PulseAudio.NormalVolume / 100

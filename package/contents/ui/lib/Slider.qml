@@ -8,8 +8,11 @@ Card {
     signal moved
 
     property alias title: title.text
+    property alias secondaryTitle: secondaryTitle.text
     property alias source: icon.source
     property alias value: slider.value
+    property alias spacerWidth: spacerItem.width
+
 
     property int from: 0
     property int to: 100
@@ -20,13 +23,36 @@ Card {
         anchors.margins: root.largeSpacing
         clip: true
 
-        PlasmaComponents.Label {
-            id: title
-            Layout.fillHeight: true
-            Layout.fillWidth: true
-            font.pixelSize: root.largeFontSize
-            font.weight: Font.Bold
-            font.capitalization: Font.Capitalize
+        RowLayout {
+            anchors.fill: parent
+            spacing: root.smallSpacing
+
+            PlasmaComponents.Label {
+                id: title
+                Layout.fillHeight: true
+                Layout.fillWidth: true
+                Layout.alignment: Qt.AlignLeft
+                font.pixelSize: root.largeFontSize
+                font.weight: Font.Bold
+                font.capitalization: Font.Capitalize
+            }
+
+            Item {
+                id: spacerItem
+                Layout.fillWidth: true
+            }
+
+            PlasmaComponents.Label {
+                id: secondaryTitle
+                Layout.fillHeight: true
+                Layout.fillWidth: true
+                Layout.alignment: Qt.AlignRight
+                font.pixelSize: root.largeFontSize
+                font.weight: Font.Bold
+                font.capitalization: Font.Capitalize
+            }
+
+
         }
         RowLayout {
             Layout.fillHeight: true
