@@ -18,7 +18,7 @@ Item {
     
     // PROPERTIES
     Layout.preferredWidth: root.fullRepWidth
-    Layout.preferredHeight: root.sectionHeight + sectionB.implicitHeight
+    Layout.preferredHeight: wrapper.implicitHeight
     Layout.minimumWidth: Layout.preferredWidth
     Layout.maximumWidth: Layout.preferredWidth
     Layout.minimumHeight: Layout.preferredHeight

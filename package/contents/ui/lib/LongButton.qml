@@ -27,7 +27,8 @@ PlasmaCore.FrameSvgItem {
         rows: 2; columns: 2
         anchors.fill: parent
         anchors.margins: button.margin
-        rowSpacing: 0
+        rowSpacing: -root.mediumSpacing
+        columnSpacing: root.mediumSpacing
         clip: true
 
         Icon {
