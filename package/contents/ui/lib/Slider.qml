@@ -11,7 +11,6 @@ Card {
     property alias secondaryTitle: secondaryTitle.text
     property alias source: icon.source
     property alias value: slider.value
-    property alias spacerWidth: spacerItem.width
 
 
     property int from: 0
@@ -38,11 +37,6 @@ Card {
                 font.capitalization: Font.Capitalize
             }
 
-            Item {
-                id: spacerItem
-                Layout.fillWidth: true
-            }
-
             PlasmaComponents.Label {
                 id: secondaryTitle
                 Layout.fillHeight: true
@@ -51,6 +45,7 @@ Card {
                 font.pixelSize: root.largeFontSize
                 font.weight: Font.Bold
                 font.capitalization: Font.Capitalize
+                horizontalAlignment: Text.AlignRight
             }
 
 

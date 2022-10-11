@@ -1,6 +1,5 @@
-
 function updateBrightness(rootItem, source) {
-    if (rootItem.updateScreenBrightnessJob || rootItem.updateKeyboardBrightnessJob)
+    if (rootItem.updateScreenBrightnessJob)
         return;
 
     if (!source.data["PowerDevil"]) {

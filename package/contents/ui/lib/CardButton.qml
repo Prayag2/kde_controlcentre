@@ -16,8 +16,8 @@ Card {
         anchors.margins: small ? root.smallSpacing : root.largeSpacing
         rows: small ? 2 : 1
         columns: small ? 1 : 2
-        columnSpacing: small ? 0 : 10
-        rowSpacing: small ? 0 : 10
+        columnSpacing: small ? 0 : 10*root.scale
+        rowSpacing: small ? 0 : 10*root.scale
 
         Item {
             id: icon

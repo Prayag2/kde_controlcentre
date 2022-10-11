@@ -2,13 +2,11 @@ import QtQuick 2.0
 import QtQuick.Layouts 1.15
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 2.0 as PlasmaComponents
-import "lib" as Lib
+import "../lib" as Lib
 
 Lib.Card {
     id: mediaPlayer
-    Layout.preferredWidth: parent.width
-    // Layout.preferredHeight: wrapper.height/4
-    // Layout.preferredHeight: sectionA.height/2
+    Layout.fillWidth: true
     Layout.preferredHeight: root.sectionHeight/2
     
     PlasmaCore.DataSource {

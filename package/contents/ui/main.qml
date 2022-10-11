@@ -3,9 +3,6 @@ import QtQuick.Controls 2.15
 import org.kde.plasma.plasmoid 2.0
 import org.kde.plasma.core 2.1 as PlasmaCore
 
-import "brightness.js" as BrightnessJS
-
-
 
 Item {
     id: root
@@ -32,45 +29,9 @@ Item {
     property int largeFontSize: 12 * scale
     property int mediumFontSize: 10 * scale
     property int smallFontSize: 6 * scale
-
-    // Screen brightness properties 
-    property int screenBrightness
-    property QtObject updateScreenBrightnessJob
-    property bool disableBrightnessUpdate: true
-
-
-    property QtObject pmSource: PlasmaCore.DataSource {
-        id: pmSource
-        engine: "powermanagement"
-        connectedSources: sources
-        onSourceAdded: {
-            disconnectSource(source);
-            connectSource(source);
-        }
-        onSourceRemoved: {
-            disconnectSource(source);
-        }
-        onDataChanged: {
-            BrightnessJS.updateBrightness(root, pmSource);
-        }
-    }
-
-        onScreenBrightnessChanged: {
-        if (disableBrightnessUpdate) {
-            return;
-        }
-        const service = pmSource.serviceForSource("PowerDevil");
-        const operation = service.operationDescription("setBrightness");
-        operation.brightness = screenBrightness;
-        updateScreenBrightnessJob = service.startOperationCall(operation);
-        updateScreenBrightnessJob.finished.connect(job => {
-            BrightnessJS.updateBrightness(root, pmSource);
-        });
-    }
-
-
-    readonly property bool isBrightnessAvailable: pmSource.data["PowerDevil"] && pmSource.data["PowerDevil"]["Screen Brightness Available"] ? true : false
-    readonly property int maximumScreenBrightness: pmSource.data["PowerDevil"] ? pmSource.data["PowerDevil"]["Maximum Screen Brightness"] || 0 : 0
+    
+    // Components
+    property bool showKDEConnect: plasmoid.configuration.showKDEConnect
 
     Plasmoid.fullRepresentation: FullRepresentation {}
     //Plasmoid.compactRepresentation: CompactRepresentation {}
