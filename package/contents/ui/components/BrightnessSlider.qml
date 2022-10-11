@@ -30,17 +30,13 @@ Lib.Slider {
     property int screenBrightness
     property QtObject updateScreenBrightnessJob
     property bool disableBrightnessUpdate: true
-    readonly property bool isBrightnessAvailable: pmSource.isBrightnessAvailable
-    readonly property int maximumScreenBrightness: pmSource.maximumScreenBrightness
 
     // Power Management Data Source
     property QtObject pmSource: PlasmaCore.DataSource {
         id: pmSource
         engine: "powermanagement"
         connectedSources: sources
-        readonly property bool isBrightnessAvailable: data && data["Screen Brightness Available"]
-        readonly property bool maximumScreenBrightness: isBrightnessAvailable ? data["Maximum Screen Brightness"] || 0 : 0
-        
+ 
         onSourceAdded: {
             disconnectSource(source);
             connectSource(source);
@@ -52,6 +48,10 @@ Lib.Slider {
             BrightnessJS.updateBrightness(brightnessControl, pmSource);
         }
     }
+
+    readonly property bool isBrightnessAvailable: pmSource.data["PowerDevil"] && pmSource.data["PowerDevil"]["Screen Brightness Available"] ? true : false
+    readonly property int maximumScreenBrightness: pmSource.data["PowerDevil"] ? pmSource.data["PowerDevil"]["Maximum Screen Brightness"] || 0 : 0
+
 
     onScreenBrightnessChanged: {
         if (disableBrightnessUpdate) {
