@@ -11,7 +11,7 @@ Lib.Slider {
     id: brightnessControl
     
     // Should be visible ONLY if the monitor supports it
-    visible: isBrightnessAvailable
+    visible: isBrightnessAvailable && root.showBrightness
     
     // Dimensions
     Layout.fillWidth: true

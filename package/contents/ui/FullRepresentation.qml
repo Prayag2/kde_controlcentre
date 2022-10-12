@@ -58,6 +58,7 @@ Item {
                     
                     Components.KDEConnect{}
                     Components.RedShift{}
+                    Components.ColorSchemeSwitcher{}
                 }
             }
         }

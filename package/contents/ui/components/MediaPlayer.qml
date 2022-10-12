@@ -6,6 +6,7 @@ import "../lib" as Lib
 
 Lib.Card {
     id: mediaPlayer
+    visible: root.showMediaPlayer
     Layout.fillWidth: true
     Layout.preferredHeight: root.sectionHeight/2
     

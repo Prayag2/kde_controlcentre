@@ -32,6 +32,12 @@ Item {
     
     // Components
     property bool showKDEConnect: plasmoid.configuration.showKDEConnect
+    property bool showNightColor: plasmoid.configuration.showNightColor
+    property bool showColorSwitcher: plasmoid.configuration.showColorSwitcher
+    property bool showDnd: plasmoid.configuration.showDnd
+    property bool showVolume: plasmoid.configuration.showVolume
+    property bool showBrightness: plasmoid.configuration.showBrightness
+    property bool showMediaPlayer: plasmoid.configuration.showMediaPlayer
 
     Plasmoid.fullRepresentation: FullRepresentation {}
     //Plasmoid.compactRepresentation: CompactRepresentation {}
