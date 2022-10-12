@@ -21,16 +21,19 @@ Card {
 
         Item {
             id: icon
-            Layout.preferredHeight: parent.small ? parent.height/2-root.smallSpacing: parent.height - root.largeSpacing
+            Layout.preferredHeight: parent.small ? parent.height/1.6-root.smallSpacing: parent.height - root.largeSpacing
             Layout.preferredWidth: Layout.preferredHeight
-            Layout.alignment: Qt.AlignHCenter
+            Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
         }
         PlasmaComponents.Label {
             id: title
+            Layout.fillHeight: true
             Layout.fillWidth: true
+            Layout.margins: root.smallSpacing
             font.pixelSize: parent.small ? root.mediumFontSize : root.largeFontSize
             font.weight: parent.small ? Font.Normal : Font.Bold
             horizontalAlignment: parent.small ? Qt.AlignHCenter : Qt.AlignLeft
+            verticalAlignment: Qt.AlignVCenter
             wrapMode: Text.WordWrap
         }
     }
