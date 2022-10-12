@@ -32,4 +32,6 @@
             <default>true</default>
         </entry>
     </group>
+    <group name="Support">
+    </group>
 </kcfg>
