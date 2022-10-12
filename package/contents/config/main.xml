@@ -12,9 +12,6 @@
         <entry name="transparency" type="Bool">
             <default>False</default>
         </entry>
-        <entry name="showColorSwitcher" type="bool">
-            <default>false</default>
-        </entry>
         <entry name="isDarkTheme" type="bool">
             <default>false</default>
         </entry>
@@ -29,6 +26,24 @@
         
         <!--    SHOW/HIDE Components      -->
         <entry name="showKDEConnect" type="bool">
+            <default>false</default>
+        </entry>
+        <entry name="showNightColor" type="bool">
+            <default>true</default>
+        </entry>
+        <entry name="showColorSwitcher" type="bool">
+            <default>true</default>
+        </entry>
+        <entry name="showDnd" type="bool">
+            <default>true</default>
+        </entry>
+        <entry name="showVolume" type="bool">
+            <default>true</default>
+        </entry>
+        <entry name="showBrightness" type="bool">
+            <default>true</default>
+        </entry>
+        <entry name="showMediaPlayer" type="bool">
             <default>true</default>
         </entry>
     </group>

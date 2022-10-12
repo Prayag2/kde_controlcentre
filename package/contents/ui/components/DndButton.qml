@@ -6,6 +6,7 @@ import "../js/funcs.js" as Funcs
 import org.kde.notificationmanager 1.0 as NotificationManager
 
 Lib.CardButton {
+    visible: root.showDnd
     Layout.columnSpan: 2
     Layout.fillWidth: true
     Layout.fillHeight: true

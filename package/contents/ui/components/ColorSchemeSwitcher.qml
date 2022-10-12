@@ -12,7 +12,7 @@ import "../lib" as Lib
 Lib.CardButton {
     id: colorSchemeSwitcher
 
-    // Layout.preferredWidth: Plasmoid.configuration.hideKdeConnect ? parent.width/2 : parent.width/4
+    visible: root.showColorSwitcher
     Layout.fillHeight: true
     Layout.fillWidth: true
     title: i18n(Plasmoid.configuration.isDarkTheme ? "Light Theme" : "Dark Theme")

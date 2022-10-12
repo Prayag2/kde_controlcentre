@@ -11,7 +11,7 @@ import "../js/funcs.js" as Funcs
 Lib.Slider {
     Layout.fillWidth: true
     Layout.preferredHeight: root.sectionHeight/2
-    visible: sinkAvailable
+    visible: sinkAvailable && root.showVolume
     title: i18n("Volume")
     
     // Audio source
