@@ -1,7 +1,7 @@
 <p align="center">
   <img src="https://github.com/Prayag2/kde_controlcentre/blob/main/assets/logo.jpg" width=100/>
-  <h2 align="center">Control Centre for KDE</h2>
-  <p align="center">A simple control centre widget inspired by MacOS!</center>
+  <h1 align="center">Control Centre for KDE</h1>
+  <p align="center">A simple control centre widget for KDE Plasma inspired by MacOS!</center>
 </p>
 
 <p align="center">
@@ -23,15 +23,34 @@
 5. Search for "Control Centre"
 6. Click on "Install" and you're done!
 
-#### From this repository
+#### From this repository (Not Stable!)
 1. Clone this repository
 `git clone https://github.com/prayag2/kde_controlcentre && cd kde_controlcentre/`
 2. Install using the script
 `kpackagetool5 -i package`
 
+## Usage
+1. Right click on the desktop.
+2. Click "Add New Widgets"
+3. Search for "Control Centre"
+4. Drag and drop to your desired place.
+
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+Please make sure to use [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) before making a pull request.
+
+## License
+[GPLv3](https://www.gnu.org/licenses/gpl-3.0.en.html)
+
+## Contributers
+<a href = "https://github.com/Prayag2/kde_controlcentre/graphs/contributors">
+  <img src = "https://contrib.rocks/image?repo=Prayag2/kde_controlcentre"/>
+</a>
+
 ## Support Me ♥
-If you liked this, then please consider supporting me!
+If you liked this project, then please consider supporting me!
 <br>
-<noscript><a href="https://liberapay.com/Prayag/donate"><img alt="Donate using Liberapay" src="https://liberapay.com/assets/widgets/donate.svg"></a></noscript>
-<a href='https://ko-fi.com/O5O1FJ70D' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://cdn.ko-fi.com/cdn/kofi2.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
-<a href="https://coindrop.to/prayagjain" target="_blank"><img src="https://github.com/Prayag2/kde_controlcentre/blob/main/package/contents/assets/Paypal.png?raw=true" style="border-radius: 10px; height: 57px !important;width: 229px !important;" alt="PayPal"></img></a>
+<a href="https://liberapay.com/Prayag/donate"><img alt="Donate using Liberapay" src="https://img.shields.io/badge/LIBERAPAY-%231A171B?style=for-the-badge&logo=liberapay"/></a>
+<a href="https://ko-fi.com/O5O1FJ70D"><img alt="Buy Me A Coffee" src="https://img.shields.io/badge/Buy%20Me%20A%20Coffee-%234D798C?style=for-the-badge&logo=ko-fi"/></a>
+<a href="https://coindrop.to/prayagjain"><img alt="Done using PayPal" src="https://img.shields.io/badge/PayPal-%23F2BA37?style=for-the-badge&logo=paypal"/></a>
