@@ -14,6 +14,11 @@
   <img src="https://github.com/Prayag2/kde_controlcentre/blob/main/assets/ss.png"/>
 </p>
 
+## Dependencies
+- KDE Plasma 5.22 and above
+- Packages: `plasma-nm`, `kdeplasma-addons`
+- KDE Connect
+
 ## Installation
 #### KDE Store (Preferred way)
 1. Right click on the desktop
