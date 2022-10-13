@@ -7,7 +7,7 @@
     <kcfgfile name=""/>
     <group name="Appearance">
         <entry name="scale" type="Int">
-            <default>120</default>
+            <default>100</default>
         </entry>
         <entry name="transparency" type="Bool">
             <default>False</default>

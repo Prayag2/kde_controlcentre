@@ -15,20 +15,20 @@ Item {
     property var animationDuration: PlasmaCore.Units.veryShortDuration
 
     property var scale: plasmoid.configuration.scale * PlasmaCore.Units.devicePixelRatio / 100
-    property int fullRepWidth: 300 * scale
-    property int fullRepHeight: 300 * scale
-    property int sectionHeight: 150 * scale
+    property int fullRepWidth: 360 * scale
+    property int fullRepHeight: 360 * scale
+    property int sectionHeight: 180 * scale
 
-    property int largeSpacing: 10 * scale
-    property int mediumSpacing: 7 * scale
-    property int smallSpacing: 5 * scale
+    property int largeSpacing: 12 * scale
+    property int mediumSpacing: 8 * scale
+    property int smallSpacing: 6 * scale
 
     property int buttonMargin: 4 * scale
-    property int buttonHeight: 40 * scale
+    property int buttonHeight: 48 * scale
 
-    property int largeFontSize: 12 * scale
-    property int mediumFontSize: 10 * scale
-    property int smallFontSize: 6 * scale
+    property int largeFontSize: 15 * scale
+    property int mediumFontSize: 12 * scale
+    property int smallFontSize: 7 * scale
     
     // Components
     property bool showKDEConnect: plasmoid.configuration.showKDEConnect
