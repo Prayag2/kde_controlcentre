@@ -38,6 +38,15 @@ Item {
     property bool showVolume: plasmoid.configuration.showVolume
     property bool showBrightness: plasmoid.configuration.showBrightness
     property bool showMediaPlayer: plasmoid.configuration.showMediaPlayer
+    property bool showCmd1: plasmoid.configuration.showCmd1
+    property bool showCmd2: plasmoid.configuration.showCmd2
+    
+    property string cmdRun1: plasmoid.configuration.cmdRun1
+    property string cmdTitle1: plasmoid.configuration.cmdTitle1
+    property string cmdIcon1: plasmoid.configuration.cmdIcon1
+    property string cmdRun2: plasmoid.configuration.cmdRun2
+    property string cmdTitle2: plasmoid.configuration.cmdTitle2
+    property string cmdIcon2: plasmoid.configuration.cmdIcon2
 
     Plasmoid.fullRepresentation: FullRepresentation {}
     //Plasmoid.compactRepresentation: CompactRepresentation {}

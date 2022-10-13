@@ -46,7 +46,31 @@
         <entry name="showMediaPlayer" type="bool">
             <default>true</default>
         </entry>
-    </group>
-    <group name="Support">
+        <entry name="showCmd1" type="bool">
+            <default>false</default>
+        </entry>
+        <entry name="showCmd2" type="bool">
+            <default>false</default>
+        </entry>
+        
+        <!--      HEHEHE GET RICKROLLED LOL        -->
+        <entry name="cmdRun1" type="string">
+            <default>xdg-open "https://shattereddisk.github.io/rickroll/rickroll.mp4"</default>
+        </entry>
+        <entry name="cmdTitle1" type="string">
+            <default>Command Button</default>
+        </entry>
+        <entry name="cmdIcon1" type="string">
+            <default>system-run-symbolic</default>
+        </entry>
+        <entry name="cmdRun2" type="string">
+            <default>xdg-open "https://bit.ly/3yCFTip"</default>
+        </entry>
+        <entry name="cmdTitle2" type="string">
+            <default>Command Button</default>
+        </entry>
+        <entry name="cmdIcon2" type="string">
+            <default>system-run-symbolic</default>
+        </entry>
     </group>
 </kcfg>

@@ -56,6 +56,21 @@ Item {
                 RowLayout {
                     spacing: 0
                     
+                    // Two blocks for custom commands
+                    Components.CommandRun{
+                        visible: root.showCmd1
+                        title: root.cmdTitle1
+                        icon: root.cmdIcon1
+                        command: root.cmdRun1
+                    }
+                    Components.CommandRun{
+                        visible: root.showCmd2
+                        title: root.cmdTitle2
+                        icon: root.cmdIcon2
+                        command: root.cmdRun2
+                    }
+                    
+                    // Other blocks
                     Components.KDEConnect{}
                     Components.RedShift{}
                     Components.ColorSchemeSwitcher{}
