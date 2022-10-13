@@ -3,7 +3,6 @@ import QtQuick.Controls 2.15
 import org.kde.plasma.plasmoid 2.0
 import org.kde.plasma.core 2.1 as PlasmaCore
 
-
 Item {
     id: root
     
@@ -30,6 +29,10 @@ Item {
     property int mediumFontSize: 12 * scale
     property int smallFontSize: 7 * scale
     
+    // Main Icon
+    property string mainIconName: plasmoid.configuration.mainIconName
+    property string mainIconHeight: plasmoid.configuration.mainIconHeight
+    
     // Components
     property bool showKDEConnect: plasmoid.configuration.showKDEConnect
     property bool showNightColor: plasmoid.configuration.showNightColor
@@ -49,6 +52,14 @@ Item {
     property string cmdTitle2: plasmoid.configuration.cmdTitle2
     property string cmdIcon2: plasmoid.configuration.cmdIcon2
 
+    readonly property bool inPanel: (Plasmoid.location === PlasmaCore.Types.TopEdge
+        || Plasmoid.location === PlasmaCore.Types.RightEdge
+        || Plasmoid.location === PlasmaCore.Types.BottomEdge
+        || Plasmoid.location === PlasmaCore.Types.LeftEdge)
+    
+    Plasmoid.switchHeight: fullRepWidth
+    Plasmoid.switchWidth: fullRepWidth
+    Plasmoid.preferredRepresentation: inPanel ? plasmoid.compactRepresentation : plasmoid.fullRepresentation
     Plasmoid.fullRepresentation: FullRepresentation {}
-    //Plasmoid.compactRepresentation: CompactRepresentation {}
+    Plasmoid.compactRepresentation: CompactRepresentation {}
 }

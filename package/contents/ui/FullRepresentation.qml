@@ -77,7 +77,9 @@ Item {
                 }
             }
         }
-        
+        Item {
+            Layout.fillHeight: true
+        }
         ColumnLayout {
             id: sectionB
 
@@ -88,5 +90,7 @@ Item {
             Components.BrightnessSlider{}
             Components.MediaPlayer{}
         }
+        
+
     }
 }

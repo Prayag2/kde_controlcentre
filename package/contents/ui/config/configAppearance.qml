@@ -18,7 +18,7 @@ ColumnLayout {
     property alias cfg_showCmd1: showCmd1.checked
     property alias cfg_showCmd2: showCmd2.checked
     property alias cfg_showPercentage: showPercentage.checked
-    
+    property alias cfg_mainIconName: mainIconName.icon.name
     property alias cfg_cmdIcon1: cmdIcon1.icon.name
     property alias cfg_cmdRun1: cmdRun1.text
     property alias cfg_cmdTitle1: cmdTitle1.text
@@ -65,7 +65,22 @@ ColumnLayout {
         CheckBox {
             id: transparency 
         }
-    }
+    } 
+    RowLayout {
+            Label {
+                text: i18n("Control Centre Icon")
+            }
+            Button {
+                id: mainIconName
+                icon.height: PlasmaCore.Units.iconSizes.medium
+                icon.width: icon.height
+                
+                onClicked: {
+                    iconDialog.open()
+                    iconDialog.iconObj= mainIconName.icon
+                }
+            }
+        }
     
     PlasmaExtras.Heading {
         text: i18n("Components")

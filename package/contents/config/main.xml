@@ -15,6 +15,12 @@
         <entry name="isDarkTheme" type="bool">
             <default>false</default>
         </entry>
+        <entry name="mainIconHeight" type="int">
+            <default>24</default>
+        </entry>
+        <entry name="mainIconName" type="string">
+            <default>configure</default>
+        </entry>
         <entry name="lightTheme" type="String">
             <label>Light Theme</label>
             <default>BreezeLight</default>
