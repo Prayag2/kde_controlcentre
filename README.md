@@ -24,10 +24,10 @@
 6. Click on "Install" and you're done!
 
 #### From this repository (Not Stable!)
-1. Clone this repository
-`git clone https://github.com/prayag2/kde_controlcentre && cd kde_controlcentre/`
-2. Install using the script
-`kpackagetool5 -i package`
+1. Clone this repository  
+```git clone https://github.com/prayag2/kde_controlcentre && cd kde_controlcentre/```
+2. Install using the script  
+```kpackagetool5 -i package```
 
 ## Usage
 1. Right click on the desktop.
