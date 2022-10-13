@@ -52,7 +52,7 @@
         <entry name="showCmd2" type="bool">
             <default>false</default>
         </entry>
-        <entry name="showPercentages" type="bool">
+        <entry name="showPercentage" type="bool">
             <default>false</default>
         </entry>
         
