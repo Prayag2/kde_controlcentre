@@ -17,6 +17,7 @@ ColumnLayout {
     property alias cfg_showMediaPlayer: showMediaPlayer.checked
     property alias cfg_showCmd1: showCmd1.checked
     property alias cfg_showCmd2: showCmd2.checked
+    property alias cfg_showPercentage: showPercentage.checked
     
     property alias cfg_cmdIcon1: cmdIcon1.icon.name
     property alias cfg_cmdRun1: cmdRun1.text
@@ -38,7 +39,7 @@ ColumnLayout {
     }
     
     PlasmaExtras.Heading {
-        text: i18n("General Settings")
+        text: i18n("General")
     }
     RowLayout {
         Label {
@@ -47,6 +48,14 @@ ColumnLayout {
         SpinBox {
             id: scale 
             from: 0; to: 1000
+        }
+    }
+    RowLayout {
+        Label {
+            text: i18n("Show Volume/Brightness Percentage")
+        }
+        CheckBox {
+            id: showPercentage
         }
     }
     RowLayout {

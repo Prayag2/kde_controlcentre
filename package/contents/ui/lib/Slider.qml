@@ -39,6 +39,7 @@ Card {
 
             PlasmaComponents.Label {
                 id: secondaryTitle
+                visible: root.showPercentage
                 Layout.fillHeight: true
                 Layout.fillWidth: true
                 Layout.alignment: Qt.AlignRight

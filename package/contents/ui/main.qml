@@ -40,6 +40,7 @@ Item {
     property bool showMediaPlayer: plasmoid.configuration.showMediaPlayer
     property bool showCmd1: plasmoid.configuration.showCmd1
     property bool showCmd2: plasmoid.configuration.showCmd2
+    property bool showPercentage: plasmoid.configuration.showPercentage
     
     property string cmdRun1: plasmoid.configuration.cmdRun1
     property string cmdTitle1: plasmoid.configuration.cmdTitle1
