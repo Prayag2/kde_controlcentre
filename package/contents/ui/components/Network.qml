@@ -6,7 +6,10 @@ Item {
     property var appletProxyModel: appletProxyModel
     property var networkStatus: networkStatus.networkStatus
     property var activeConnectionIcon: activeConnectionIcon.connectionIcon
+    property var enabledConnections: enabledConnections
+    property var availableDevices: availableDevices
     property var handler: handler
+
     
     PlasmaNM.ConnectionIcon {
         id: activeConnectionIcon
@@ -21,4 +24,12 @@ Item {
         id: appletProxyModel
         sourceModel: PlasmaNM.NetworkModel{}
     }
+    PlasmaNM.EnabledConnections {
+        id: enabledConnections
+    }
+    PlasmaNM.AvailableDevices {
+        id: availableDevices
+    }
+
+
 }

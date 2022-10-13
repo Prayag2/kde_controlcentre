@@ -35,6 +35,7 @@ Lib.Card {
             title: i18n("Network")
             subtitle: network.networkStatus
             source: network.activeConnectionIcon
+            sourceColor: network.networkStatus === "Connected" ? PlasmaCore.Theme.highlightColor : PlasmaCore.Theme.disabledTextColor
             onClicked: {
                 sectionNetworks.toggleNetworkSection()
             }
