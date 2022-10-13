@@ -52,6 +52,9 @@
         <entry name="showCmd2" type="bool">
             <default>false</default>
         </entry>
+        <entry name="showPercentages" type="bool">
+            <default>false</default>
+        </entry>
         
         <!--      HEHEHE GET RICKROLLED LOL        -->
         <entry name="cmdRun1" type="string">
