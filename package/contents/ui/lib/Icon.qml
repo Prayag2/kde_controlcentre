@@ -14,9 +14,4 @@ Rectangle {
         anchors.margins: root.smallSpacing //
         anchors.centerIn: parent
     }
-    ColorOverlay {
-        source: icon
-        anchors.fill: icon
-        color: PlasmaCore.Theme.highlightedTextColor
-    }
 }
