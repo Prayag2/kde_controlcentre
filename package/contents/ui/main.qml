@@ -6,7 +6,6 @@ import org.kde.plasma.core 2.1 as PlasmaCore
 Item {
     id: root
     
-    property string currentPage: "fullRep"
     clip: true
 
     // PROPERTIES
