@@ -83,7 +83,7 @@ ColumnLayout {
         }
     
     PlasmaExtras.Heading {
-        text: i18n("Components")
+        text: i18n("Quick Toggle Buttons")
         Layout.topMargin: PlasmaCore.Units.largeSpacing
     }
     Label {
@@ -92,7 +92,9 @@ ColumnLayout {
     }
     RowLayout {
         Label {
-            text: i18n('Show "KDE Connect"')
+            text: i18n('Show KDE Connect')
+            color: showKDEConnect.enabled ? PlasmaCore.Theme.textColor : PlasmaCore.Theme.disabledTextColor
+
         }
         CheckBox {
             id: showKDEConnect
@@ -101,7 +103,8 @@ ColumnLayout {
     }
     RowLayout {
         Label {
-            text: i18n('Show "Night Color"')
+            text: i18n('Show Night Color')
+            color: showNightColor.enabled ? PlasmaCore.Theme.textColor : PlasmaCore.Theme.disabledTextColor
         }
         CheckBox {
             id: showNightColor
@@ -110,7 +113,9 @@ ColumnLayout {
     }
     RowLayout {
         Label {
-            text: i18n('Show "Color Scheme Switcher"')
+            text: i18n('Show Color Scheme Switcher')
+            color: showColorSwitcher.enabled ? PlasmaCore.Theme.textColor : PlasmaCore.Theme.disabledTextColor
+
         }
         CheckBox {
             id: showColorSwitcher
@@ -119,7 +124,8 @@ ColumnLayout {
     }
     RowLayout {
         Label {
-            text: i18n('Show "Custom Command Block 1"')
+            text: i18n('Show Custom Command Block 1')
+            color: showCmd1.enabled ? PlasmaCore.Theme.textColor : PlasmaCore.Theme.disabledTextColor
         }
         CheckBox {
             id: showCmd1
@@ -164,7 +170,8 @@ ColumnLayout {
     }
     RowLayout {
         Label {
-            text: i18n('Show "Custom Command Block 2"')
+            text: i18n('Show Custom Command Block 2')
+            color: showCmd2.enabled ? PlasmaCore.Theme.textColor : PlasmaCore.Theme.disabledTextColor
         }
         CheckBox {
             id: showCmd2
@@ -207,9 +214,13 @@ ColumnLayout {
             }
         }
     }
+    PlasmaExtras.Heading {
+        Layout.topMargin: PlasmaCore.Units.largeSpacing
+        text: "Other Components"
+    }
     RowLayout {
         Label {
-            text: i18n('Show "Volume Control"')
+            text: i18n('Show Volume Control')
         }
         CheckBox {
             id: showVolume
@@ -217,7 +228,7 @@ ColumnLayout {
     }
     RowLayout {
         Label {
-            text: i18n('Show "Brightness Control"')
+            text: i18n('Show Brightness Control')
         }
         CheckBox {
             id: showBrightness
@@ -225,7 +236,7 @@ ColumnLayout {
     }
     RowLayout {
         Label {
-            text: i18n('Show "Media Player"')
+            text: i18n('Show Media Player')
         }
         CheckBox {
             id: showMediaPlayer
