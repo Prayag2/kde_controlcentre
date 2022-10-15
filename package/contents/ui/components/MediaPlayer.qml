@@ -29,7 +29,7 @@ Lib.Card {
                 var thumb = audioMetadata["mpris:artUrl"]   
                 
                 audioTitle.text = title ? title : i18n("Unknown Media")
-                audioThumb.source = thumb ? thumb : "../assets/music.png"
+                audioThumb.source = thumb ? thumb : "../../assets/music.png"
                 
                 audioArtist.visible = true
                 audioThumb.visible = true
