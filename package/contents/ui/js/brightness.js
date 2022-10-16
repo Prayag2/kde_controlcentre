@@ -12,9 +12,5 @@ function updateBrightness(rootItem, source) {
     if (typeof source.data["PowerDevil"]["Screen Brightness"] === 'number') {
         rootItem.screenBrightness = source.data["PowerDevil"]["Screen Brightness"];
     }
-    if (typeof source.data["PowerDevil"]["Keyboard Brightness"] === 'number') {
-        rootItem.keyboardBrightness = source.data["PowerDevil"]["Keyboard Brightness"];
-    }
     rootItem.disableBrightnessUpdate = false;
 }
-
