@@ -12,7 +12,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Improved the logo.
 - Spacing between the title and the subtitle in the `LongButton` is now smaller.
 - Spacing below the horizontal line in the networks section now matches other margins.
-- Icons now follow the colour scheme properly.
 - The colour scheme switcher now works properly in other languages.
 
 ### Changed
@@ -31,6 +30,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - A different page for the "Support Me" section in the settings.
 - This changelog.
 
+### Removed
+- Removed the "archives" folder as it's useless.
 
 
 ## [0.0.1] - 2022-10-07
