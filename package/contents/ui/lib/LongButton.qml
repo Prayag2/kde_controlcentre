@@ -20,6 +20,7 @@ PlasmaCore.FrameSvgItem {
     property alias title: title.text
     property alias subtitle: subtitle.text
     property alias source: icon.source
+    property alias sourceColor: icon.sourceColor
 
     property int margin: root.buttonMargin
 
