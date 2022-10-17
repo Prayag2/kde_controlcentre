@@ -24,6 +24,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Option to show/hide most components.
 - Option to change the control centre icon.
 - Option to add custom buttons that can run shell commands.
+- Option to use control centre in the system tray.
 - A "previous" button in the media player.
 - A new brightness slider to help you control your display's brightness.
 - A new button to switch colour schemes easily.

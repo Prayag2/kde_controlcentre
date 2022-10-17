@@ -15,11 +15,12 @@
         "ServiceTypes": [
             "Plasma/Applet"
         ],
-        "Version": "0.0.1",
+        "Version": "0.1.0",
         "Website": "https://github.com/prayag2/kde_controlcentre"
 
     },
     "X-Plasma-API": "declarativeappletscript",
     "X-Plasma-MainScript": "ui/main.qml",
-    "X-Plasma-Provides": "org.kde.plasma.multimediacontrols,org.kde.plasma.powermanagement,org.kde.plasma.notifications"
+    "X-Plasma-Provides": "org.kde.plasma.multimediacontrols,org.kde.plasma.powermanagement,org.kde.plasma.notifications",
+    "X-Plasma-NotificationArea": "true"
 }
