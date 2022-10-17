@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [0.1.0] - 2022-10-17
 ### Fixed
 - Text and icons are no longer blurry.
 - Icons in quick toggle buttons are no longer tiny.
@@ -38,5 +40,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.0.1] - 2022-10-07
 Initial Release
 
-[Unreleased]: https://github.com/Prayag2/kde_controlcentre/compare/15e251b08e25bfd4034b869747fbcd039d29a8d7...HEAD
+[Unreleased]: https://shattereddisk.github.io/rickroll/rickroll.mp4
+[0.1.0]: https://github.com/Prayag2/kde_controlcentre/compare/15e251b08e25bfd4034b869747fbcd039d29a8d7...0.1.0
 [0.0.1]: https://github.com/Prayag2/kde_controlcentre/compare/185d82086af4f3183fe07603fdd96f8168d9f5ae...15e251b08e25bfd4034b869747fbcd039d29a8d7
