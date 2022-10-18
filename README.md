@@ -16,7 +16,7 @@
 
 ## Dependencies
 - KDE Plasma 5.22 and above
-- Packages: `plasma-nm`, `kdeplasma-addons`
+- Packages: `plasma-nm`, `kdeplasma-addons`, `plasma-pa`
 - KDE Connect
 
 ## Installation
