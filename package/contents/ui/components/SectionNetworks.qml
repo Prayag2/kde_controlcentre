@@ -4,6 +4,7 @@ import QtQuick.Layouts 1.15
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 2.0 as PlasmaComponents
 import org.kde.plasma.components 3.0 as PlasmaComponents3
+import org.kde.plasma.networkmanagement 0.2 as PlasmaNM
 import "../lib" as Lib
 
 Lib.Card {
@@ -19,7 +20,6 @@ Lib.Card {
         } else {
             wrapper.visible = true;
             sectionNetworks.visible = false;
-            
         }
     }
 
@@ -72,26 +72,16 @@ Lib.Card {
                         id: wifiSwitchButton
 
                         readonly property bool administrativelyEnabled: network.availableDevices.wirelessDeviceAvailable && network.enabledConnections.wirelessHwEnabled
-                        property bool wifiCheck: administrativelyEnabled
 
+                        Layout.rightMargin: root.smallSpacing
                         checked: administrativelyEnabled && network.enabledConnections.wirelessEnabled
                         enabled: administrativelyEnabled
-                        icon.name: wifiCheck && network.enabledConnections.wirelessEnabled ? "network-wireless-on" : "network-wireless-off"
+                        icon.name: administrativelyEnabled && network.enabledConnections.wirelessEnabled ? "network-wireless-on" : "network-wireless-off"
                         visible: network.availableDevices.wirelessDeviceAvailable
-                        nextCheckState: function() {
-                            if (checkState === Qt.Checked) {
-                                network.handler.enableWireless(false);
-                                wifiCheck = false;
-                                return Qt.Unchecked;
-                            } else {
-                                network.handler.enableWireless(true);
-                                wifiCheck = true;
-                                return Qt.Checked;
-                            }
-                        }
+                        onToggled: network.handler.enableWireless(checked)
 
                         PlasmaComponents3.ToolTip {
-                            text: i18n("Enable Wi-Fi")
+                            text: wifiSwitchButton.checked ? i18n("Disable Wi-Fi") : i18n("Enable Wi-Fi")
                         }
 
                         PlasmaComponents3.BusyIndicator {
@@ -119,6 +109,26 @@ Lib.Card {
                                 target: network.handler
                             }
 
+                        }
+
+                    }
+
+                    // Airplane mode section
+                    PlasmaComponents3.CheckBox {
+                        id: airPlaneModeSwitchButton
+
+                        property bool initialized: false
+
+                        checked: PlasmaNM.Configuration.airplaneModeEnabled
+                        icon.name: PlasmaNM.Configuration.airplaneModeEnabled ? "network-flightmode-on" : "network-flightmode-off"
+                        visible: network.availableDevices.modemDeviceAvailable || network.availableDevices.wirelessDeviceAvailable
+                        onToggled: {
+                            network.handler.enableAirplaneMode(checked);
+                            PlasmaNM.Configuration.airplaneModeEnabled = checked;
+                        }
+
+                        PlasmaComponents3.ToolTip {
+                            text: airPlaneModeSwitchButton.checked ? i18n("Disable airplane mode") : i18n("Enable airplane mode")
                         }
 
                     }
