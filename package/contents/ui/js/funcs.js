@@ -99,6 +99,7 @@ function changeVolumeByPercent(volumeObject, deltaPercent) {
     volumeObject.volume = newVolume;
     return newPercent;
 }
+
 function volIconName(volume, muted, prefix) {
     if (!prefix) {
         prefix = "audio-volume";
@@ -115,4 +116,60 @@ function volIconName(volume, muted, prefix) {
         icon = prefix + "-high";
     }
     return icon;
+}
+
+function generateCustomActions(customActionsConfigurationString) {
+    const component = Qt.createComponent("../components/CommandRun.qml");
+    const parsedCustomActions = JSON.parse(customActionsConfigurationString || '[]');
+
+
+    parsedCustomActions.forEach((customAction) => {
+        const temp = component.createObject(sectionC);
+
+        temp.title = customAction.name;
+        temp.command = customAction.command;
+        temp.icon = customAction.icon;
+        temp.visible = true;
+        temp.isSmall = true;
+
+        if (temp == null) {
+            console.log('Error creating object');
+        }
+    })
+}
+
+function generateCustomActionsConfiguration(customActionsConfigurationString) {
+    const component = Qt.createComponent("../components/CustomActionConfig.qml");
+    const parsedCustomActions = JSON.parse(customActionsConfigurationString || '[]');
+
+
+    parsedCustomActions.forEach((customAction) => {
+        const temp = component.createObject(customActionsConfigColumn);
+
+        temp.title = customAction.name;
+        temp.command = customAction.command;
+        temp.customIcon = customAction.icon;
+
+        if (temp == null) {
+            console.log('Error creating object');
+        }
+    })
+}
+
+function saveJSON(object) {
+    const newConfig = Array.from(object.children).map(child => {
+        return { name: child.title, icon: child.customIcon, command: child.command }
+    })
+
+    return JSON.stringify(newConfig);
+}
+
+function destroyObject(object) {
+    object.destroy();
+}
+
+function addObject() {
+    const component = Qt.createComponent("../components/CustomActionConfig.qml");
+
+    component.createObject(customActionsConfigColumn);
 }

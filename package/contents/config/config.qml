@@ -14,6 +14,11 @@ ConfigModel {
         visible: Plasmoid.configuration.showColorSwitcher
     }
     ConfigCategory {
+        name: i18n("Custom actions")
+        icon: "new-command-alarm"
+        source: "config/configCustomActions.qml"
+    }
+    ConfigCategory {
         name: i18n("Support")
         icon: "face-angel"
         source: "config/configSupport.qml"

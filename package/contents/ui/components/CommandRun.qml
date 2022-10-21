@@ -8,11 +8,15 @@ import "../lib" as Lib
 import "../js/funcs.js" as Funcs
 
 Lib.CardButton {
-    Layout.fillWidth: true
-    Layout.fillHeight: true
     property string icon;
     property string command;
+    property bool isSmall;
     
+    Layout.fillWidth: true
+    Layout.fillHeight: !isSmall
+
+    Layout.preferredHeight: isSmall ? root.sectionHeight / 2 : undefined
+
     function exec(cmd) {
         executable.connectSource(cmd)
     }

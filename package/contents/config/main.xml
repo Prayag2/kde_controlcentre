@@ -81,5 +81,10 @@
         <entry name="cmdIcon2" type="string">
             <default>system-run-symbolic</default>
         </entry>
+
+        <!-- Custom actions -->
+        <entry name="customActions" type="string">
+            <default>[]</default>
+        </entry>
     </group>
 </kcfg>

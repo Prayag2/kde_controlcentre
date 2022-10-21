@@ -77,9 +77,11 @@ Item {
                 }
             }
         }
+
         Item {
             Layout.fillHeight: true
         }
+
         ColumnLayout {
             id: sectionB
 
@@ -90,7 +92,20 @@ Item {
             Components.BrightnessSlider{}
             Components.MediaPlayer{}
         }
-        
 
+        Item {
+            Layout.fillHeight: true
+        }
+
+        // Custom Actions section
+        GridLayout {
+            id: sectionC
+
+            Layout.fillWidth: true
+            rows: 2
+            columns: 4
+            
+            Component.onCompleted: Funcs.generateCustomActions(plasmoid.configuration.customActions);
+        }
     }
 }
