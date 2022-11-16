@@ -18,13 +18,9 @@ Item
         PlasmaCore.IconItem {
             id: icon
             anchors.fill: parent
-            anchors.margins: root.smallSpacing //
+            anchors.margins: root.smallSpacing
             anchors.centerIn: parent
-        }
-        ColorOverlay {
-            source: icon
-            anchors.fill: icon
-            color: PlasmaCore.Theme.highlightedTextColor
+            status: PlasmaCore.IconItem.Selected
         }
     }
 }
