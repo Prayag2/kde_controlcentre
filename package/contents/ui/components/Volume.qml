@@ -14,6 +14,11 @@ Lib.Slider {
     visible: sinkAvailable && root.showVolume
     title: i18n("Volume")
     
+    // Volume Feedback
+    Vol.VolumeFeedback {
+        id: feedback
+    }
+    
     // Audio source
     property var sink: paSinkModel.preferredSink
     readonly property bool sinkAvailable: sink && !(sink && sink.name == "auto_null")
@@ -21,12 +26,17 @@ Lib.Slider {
         id: paSinkModel
     }
     
-    value: (sink.volume / Vol.PulseAudio.NormalVolume * 100)
+    value: Math.round(sink.volume / Vol.PulseAudio.NormalVolume * 100)
     secondaryTitle: Math.round(sink.volume / Vol.PulseAudio.NormalVolume * 100) + "%"
     
     // Changes icon based on the current volume percentage
     source: Funcs.volIconName(sink.volume, sink.muted)
     
+    onValueChanged: {
+        if(root.playVolumeFeedback) {
+            feedback.play(sink.index)
+        }
+    }
     // Update volume
     onMoved: {
         sink.volume = value * Vol.PulseAudio.NormalVolume / 100

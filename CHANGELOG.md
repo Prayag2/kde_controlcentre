@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Fixed
 - Icons now follow the colour scheme correctly.
 
+## Added
+- Option to play a feedback sound when changing volume. See [#32](https://github.com/Prayag2/kde_controlcentre/issues/32)
+
 ## [0.1.0] - 2022-10-17
 ### Fixed
 - Text and icons are no longer blurry.

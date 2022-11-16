@@ -67,6 +67,9 @@ Card {
                 Layout.fillWidth: true
                 from: sliderComp.from
                 to: sliderComp.to
+                stepSize: 2
+                snapMode: Slider.SnapAlways
+                
                 onMoved: {
                     sliderComp.moved()
                 }

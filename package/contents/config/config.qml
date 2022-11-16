@@ -8,6 +8,11 @@ ConfigModel {
         source: "config/configAppearance.qml"
     }
     ConfigCategory {
+        name: i18n("Behaviour")
+        icon: "preferences-desktop"
+        source: "config/configBehaviour.qml"
+    }
+    ConfigCategory {
         name: i18n("Color schemes")
         icon: "color-picker"
         source: "config/configColorscheme.qml"

@@ -11,6 +11,7 @@ Item {
     // PROPERTIES
     property bool enableTransparency: plasmoid.configuration.transparency
     property var animationDuration: PlasmaCore.Units.veryShortDuration
+    property bool playVolumeFeedback: plasmoid.configuration.playVolumeFeedback
 
     property var scale: plasmoid.configuration.scale * PlasmaCore.Units.devicePixelRatio / 100
     property int fullRepWidth: 360 * scale
