@@ -1,16 +1,19 @@
 import QtQuick 2.0
 import QtQuick.Layouts 1.15
 import org.kde.plasma.core 2.0 as PlasmaCore
+import org.kde.plasma.components 2.0 as PlasmaComponents2
 import org.kde.plasma.components 3.0 as PlasmaComponents
 
 Card {
     id: sliderComp
     signal moved
+    signal clicked
 
     property alias title: title.text
     property alias secondaryTitle: secondaryTitle.text
-    property alias source: icon.source
     property alias value: slider.value
+    property bool useIconButton: false
+    property string source
 
 
     property int from: 0
@@ -58,9 +61,21 @@ Card {
 
             PlasmaCore.IconItem {
                 id: icon
+                source: sliderComp.source
+                visible: !sliderComp.useIconButton
                 Layout.preferredHeight: root.largeFontSize*2
                 Layout.preferredWidth: Layout.preferredHeight
             }
+            
+            PlasmaComponents2.ToolButton {
+                id: iconButton
+                visible: sliderComp.useIconButton
+                iconSource: sliderComp.source
+                Layout.preferredHeight: root.largeFontSize*2
+                Layout.preferredWidth: Layout.preferredHeight
+                onClicked: sliderComp.clicked()
+            }
+            
             PlasmaComponents.Slider {
                 id: slider
                 Layout.fillHeight: true

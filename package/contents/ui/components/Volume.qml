@@ -12,6 +12,7 @@ Lib.Slider {
     Layout.fillWidth: true
     Layout.preferredHeight: root.sectionHeight/2
     visible: sinkAvailable && root.showVolume
+    useIconButton: true
     title: i18n("Volume")
     
     // Volume Feedback
@@ -40,5 +41,15 @@ Lib.Slider {
     // Update volume
     onMoved: {
         sink.volume = value * Vol.PulseAudio.NormalVolume / 100
+    }
+    
+    property var oldVol: 100 * Vol.PulseAudio.NormalVolume / 100
+    onClicked: {
+        if(value!=0){
+            oldVol = sink.volume
+            sink.volume=0
+        } else {
+            sink.volume=oldVol
+        }
     }
 }
