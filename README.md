@@ -1,3 +1,6 @@
+> :warning: Due to upcoming exams, this project will not be maintained for a few months.
+<hr>
+
 <p align="center">
   <img src="https://github.com/Prayag2/kde_controlcentre/blob/main/assets/logo.jpg" width=100/>
   <h1 align="center">Control Centre for KDE</h1>
