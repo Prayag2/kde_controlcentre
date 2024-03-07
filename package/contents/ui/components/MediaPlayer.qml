@@ -3,6 +3,8 @@ import QtQuick.Layouts
 import org.kde.plasma.plasma5support as PlasmaCore
 import org.kde.plasma.components as PlasmaComponents
 import org.kde.kirigami as Kirigami
+import org.kde.plasma.private.mpris as Mpris
+
 import "../lib" as Lib
 
 Lib.Card {
@@ -11,101 +13,64 @@ Lib.Card {
     Layout.fillWidth: true
     Layout.preferredHeight: root.sectionHeight/2
 
-    PlasmaCore.DataSource {
-        id: musicSource
-        engine: "mpris2"
+    readonly property bool isPlaying: (model.currentPlayer?.playbackStatus ?? 0) == Mpris.PlaybackStatus.Playing
 
-        onDataChanged: {
-            connectedSources = ["@multiplex"]
-            var audioData = data["@multiplex"]
-            var playing = audioData["PlaybackStatus"] === "Playing"
-
-
-            // show if and only if the audio source exists and the audio is currently playing
-            if (audioData && playing) {
-
-                var audioMetadata = audioData["Metadata"]
-                var title = audioMetadata["xesam:title"]
-                var artist = audioMetadata["xesam:artist"]
-                var thumb = audioMetadata["mpris:artUrl"]
-
-                audioTitle.text = title ? title : i18n("Unknown Media")
-                audioThumb.source = thumb ? thumb : "../../assets/music.png"
-
-                audioArtist.visible = true
-                audioThumb.visible = true
-                audioControls.visible = true
-                audioTitle.horizontalAlignment = Qt.AlignLeft
-                playIcon.source = "media-playback-pause"
-                try {
-                    audioArtist.text = artist.join(", ")
-                } catch(err) {
-                    audioArtist.text = artist ? artist : i18n("Unknown Artist")
-                }
-            } else {
-                playIcon.source = "media-playback-start"
-            }
-        }
-        onSourcesChanged: {
-            dataChanged()
-        }
-        onSourceRemoved: {
-            audioArtist.visible = false
-            audioThumb.visible = false
-            audioControls.visible = false
-            audioTitle.horizontalAlignment = Qt.AlignHCenter
-            audioTitle.text = i18n("No Media Playing")
-            dataChanged()
-        }
-        Component.onCompleted: {
-            audioArtist.visible = false
-            audioThumb.visible = false
-            audioControls.visible = false
-            audioTitle.horizontalAlignment = Qt.AlignHCenter
-            audioTitle.text = i18n("No Media Playing")
-            dataChanged()
-        }
-    }
-
-    function action(src, op) {
-        var service = musicSource.serviceForSource(src);
-        var operation = service.operationDescription(op);
-        return service.startOperationCall(operation);
-    }
+    readonly property string trackName: model.currentPlayer?.track ?? i18n("Unknown Media")
+    readonly property string trackArtist: model.currentPlayer?.artist ?? i18n("Unknown Artist")
+    readonly property string trackArt: model.currentPlayer?.artUrl ?? "../../assets/music.png"
 
     RowLayout {
         anchors.fill: parent
-        anchors.margins: root.largeSpacing
+        anchors.margins: mediaPlayer.largeSpacing
+        Layout.fillWidth: true
+        Layout.preferredHeight: mediaPlayer.sectionHeight/2
 
         Image {
             id: audioThumb
             fillMode: Image.PreserveAspectCrop
+            source: mediaPlayer.trackArt
+
             Layout.fillHeight: true
             Layout.preferredWidth: height
         }
+
         ColumnLayout {
             id: mediaNameWrapper
-            Layout.margins: root.smallSpacing
+            Layout.margins: mediaPlayer.smallSpacing
             Layout.fillHeight: true
             spacing: 0
 
             PlasmaComponents.Label {
                 id: audioTitle
+                text: {
+                    if (mediaPlayer.isStopped) {
+                        return i18n("No Media Playing");
+                    }
+
+                    return mediaPlayer.trackName;
+                }
+
                 Layout.fillWidth: true
                 font.capitalization: Font.Capitalize
                 font.weight: Font.Bold
-                font.pixelSize: root.largeFontSize
+                font.pixelSize: mediaPlayer.largeFontSize
                 horizontalAlignment: Text.AlignHCenter
                 elide: Text.ElideRight
             }
+
             PlasmaComponents.Label {
                 id: audioArtist
+                text: mediaPlayer.trackArtist
+
                 Layout.fillWidth: true
-                font.pixelSize: root.mediumFontSize
+                font.pixelSize: mediaPlayer.mediumFontSize
             }
         }
+
         RowLayout {
             id: audioControls
+            visible: !mediaPlayer.isStopped
+
             Layout.alignment: Qt.AlignRight
 
             Kirigami.Icon {
@@ -116,26 +81,26 @@ Lib.Card {
                 MouseArea {
                     anchors.fill: parent
                     onClicked: {
-                        mediaPlayer.action(musicSource.connectedSources,
-"Previous")
+                        model.currentPlayer.Previous();
                     }
                 }
             }
 
             Kirigami.Icon {
                 id: playIcon
+                source: mediaPlayer.isPlaying ? "media-playback-pause" : "media-playback-start"
+
                 Layout.preferredHeight: mediaNameWrapper.implicitHeight
                 Layout.preferredWidth: height
-                source: "media-playback-start"
 
                 MouseArea {
                     anchors.fill: parent
                     onClicked: {
-                        mediaPlayer.action(musicSource.connectedSources,
-"PlayPause")
+                        model.currentPlayer.PlayPause();
                     }
                 }
             }
+
             Kirigami.Icon {
                 Layout.preferredHeight: mediaNameWrapper.implicitHeight
                 Layout.preferredWidth: height
@@ -144,10 +109,16 @@ Lib.Card {
                 MouseArea {
                     anchors.fill: parent
                     onClicked: {
-                        mediaPlayer.action(musicSource.connectedSources, "Next")
+                        model.currentPlayer.Next();
                     }
                 }
             }
         }
+    }
+
+    // Components //
+
+    Mpris.Mpris2Model {
+        id: model
     }
 }

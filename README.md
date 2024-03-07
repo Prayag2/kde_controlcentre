@@ -31,9 +31,9 @@ You can install it on Arch using: <br />
 To Do:
 - [X] Port plasmoid to Qt/Plasma 6
 - [X] Basic functionality (toggles, volume/brightness sliders, light/dark mode)
-- [ ] Fix the media player section
+- [X] Fix the media player section
 - [ ] Fix the 'appearance' configuration section
-- [ ] (Bug) Light/dark mode toggle not showing the correct status when added for the first time.
+- [ ] (Bug) Light/dark mode toggle not showing the correct status.
 - [ ] (Bug) Alerts in the configuration page not working 'as expected' in certain situations.
 
 ## Installation
