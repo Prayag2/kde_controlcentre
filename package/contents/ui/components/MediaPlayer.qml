@@ -36,7 +36,7 @@ Lib.Card {
 
         ColumnLayout {
             id: mediaNameWrapper
-            Layout.margins: mediaPlayer.smallSpacing
+            Layout.margins: root.smallSpacing
             Layout.fillHeight: true
             spacing: 0
 
@@ -53,7 +53,7 @@ Lib.Card {
                 Layout.fillWidth: true
                 font.capitalization: Font.Capitalize
                 font.weight: Font.Bold
-                font.pixelSize: mediaPlayer.largeFontSize
+                font.pixelSize: root.largeFontSize
                 horizontalAlignment: Text.AlignHCenter
                 elide: Text.ElideRight
             }
@@ -63,7 +63,7 @@ Lib.Card {
                 text: mediaPlayer.trackArtist
 
                 Layout.fillWidth: true
-                font.pixelSize: mediaPlayer.mediumFontSize
+                font.pixelSize: root.mediumFontSize
             }
         }
 
