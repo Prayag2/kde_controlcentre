@@ -1,9 +1,10 @@
-import QtQml 2.0
-import QtQuick 2.0
-import QtQuick.Layouts 1.15
+import QtQml
+import QtQuick
+import QtQuick.Layouts
 
-import org.kde.plasma.core 2.0 as PlasmaCore
-import org.kde.plasma.private.nightcolorcontrol 1.0 as Redshift
+import org.kde.kirigami as Kirigami
+import org.kde.plasma.core as PlasmaCore
+import org.kde.plasma.private.brightnesscontrolplugin
 
 import "../lib" as Lib
 import "../js/funcs.js" as Funcs
@@ -14,20 +15,29 @@ Lib.CardButton {
     visible: root.showNightColor
     property var monitor: redMonitor
     property var inhibitor: inhibitor
-    Redshift.Monitor {
-        id: redMonitor
-    }
-    Redshift.Inhibitor {
-        id: inhibitor
-    }
+
     Layout.fillWidth: true
     Layout.fillHeight: true
     title: i18n("Night Color")
-    PlasmaCore.IconItem {
+
+    Kirigami.Icon {
         anchors.fill: parent
         source: monitor.running ? "redshift-status-on" : "redshift-status-off"
     }
     onClicked: {
-        Funcs.toggleRedshiftInhibition();
+        Funcs.toggleNightLight();
+    }
+
+    // Components //
+
+    NightColorInhibitor {
+        id: inhibitor
+    }
+
+    NightColorMonitor {
+        id: redMonitor
+
+        readonly property bool transitioning: monitor.currentTemperature != monitor.targetTemperature
+        readonly property bool hasSwitchingTimes: monitor.mode != 3
     }
 }

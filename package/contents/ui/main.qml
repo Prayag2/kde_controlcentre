@@ -1,19 +1,20 @@
-import QtQuick 2.0
-import QtQuick.Controls 2.15
-import org.kde.plasma.plasmoid 2.0
-import org.kde.plasma.core 2.1 as PlasmaCore
+import QtQuick
+import QtQuick.Controls
+import org.kde.kirigami as Kirigami
+import org.kde.plasma.plasmoid
+import org.kde.plasma.core as PlasmaCore
 
-Item {
+PlasmoidItem {
     id: root
-    
+
     clip: true
 
     // PROPERTIES
     property bool enableTransparency: plasmoid.configuration.transparency
-    property var animationDuration: PlasmaCore.Units.veryShortDuration
+    property var animationDuration: Kirigami.Units.veryShortDuration
     property bool playVolumeFeedback: plasmoid.configuration.playVolumeFeedback
 
-    property var scale: plasmoid.configuration.scale * PlasmaCore.Units.devicePixelRatio / 100
+    property var scale: plasmoid.configuration.scale * 0.01
     property int fullRepWidth: 360 * scale
     property int fullRepHeight: 360 * scale
     property int sectionHeight: 180 * scale
@@ -28,11 +29,11 @@ Item {
     property int largeFontSize: 15 * scale
     property int mediumFontSize: 12 * scale
     property int smallFontSize: 7 * scale
-    
+
     // Main Icon
     property string mainIconName: plasmoid.configuration.mainIconName
     property string mainIconHeight: plasmoid.configuration.mainIconHeight
-    
+
     // Components
     property bool showKDEConnect: plasmoid.configuration.showKDEConnect
     property bool showNightColor: plasmoid.configuration.showNightColor
@@ -44,7 +45,7 @@ Item {
     property bool showCmd1: plasmoid.configuration.showCmd1
     property bool showCmd2: plasmoid.configuration.showCmd2
     property bool showPercentage: plasmoid.configuration.showPercentage
-    
+
     property string cmdRun1: plasmoid.configuration.cmdRun1
     property string cmdTitle1: plasmoid.configuration.cmdTitle1
     property string cmdIcon1: plasmoid.configuration.cmdIcon1
@@ -56,10 +57,10 @@ Item {
         || Plasmoid.location === PlasmaCore.Types.RightEdge
         || Plasmoid.location === PlasmaCore.Types.BottomEdge
         || Plasmoid.location === PlasmaCore.Types.LeftEdge)
-    
-    Plasmoid.switchHeight: fullRepWidth
-    Plasmoid.switchWidth: fullRepWidth
-    Plasmoid.preferredRepresentation: inPanel ? plasmoid.compactRepresentation : plasmoid.fullRepresentation
-    Plasmoid.fullRepresentation: FullRepresentation {}
-    Plasmoid.compactRepresentation: CompactRepresentation {}
+
+    switchHeight: fullRepWidth
+    switchWidth: fullRepWidth
+    preferredRepresentation: inPanel ? plasmoid.compactRepresentation : plasmoid.fullRepresentation
+    fullRepresentation: FullRepresentation {}
+    compactRepresentation: CompactRepresentation {}
 }

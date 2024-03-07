@@ -1,14 +1,14 @@
-import QtQml 2.0
-import QtQuick 2.0
-import QtQuick.Controls 2.0
-import QtQuick.Layouts 1.0
-import org.kde.plasma.core 2.0 as PlasmaCore
-import org.kde.plasma.extras 2.0 as PlasmaExtras
+import QtQml
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Layouts
+import org.kde.plasma.plasma5support as PlasmaCore
+import org.kde.plasma.extras as PlasmaExtras
 
 Item {
     property alias cfg_lightTheme: labelA.text // labels to store previous choices (ComboBox doesn't like to do it by itself)
     property alias cfg_darkTheme: labelB.text // labels to store previous choices (ComboBox doesn't like to do it by itself)
-    
+
     PlasmaCore.DataSource {
         id: executable
         engine: "executable"

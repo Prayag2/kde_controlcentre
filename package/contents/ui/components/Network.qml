@@ -1,6 +1,6 @@
-import QtQml 2.0
-import QtQuick 2.0
-import org.kde.plasma.networkmanagement 0.2 as PlasmaNM
+import QtQml
+import QtQuick
+import org.kde.plasma.networkmanagement as PlasmaNM
 
 Item {
     property var appletProxyModel: appletProxyModel
@@ -10,7 +10,7 @@ Item {
     property var availableDevices: availableDevices
     property var handler: handler
 
-    
+
     PlasmaNM.ConnectionIcon {
         id: activeConnectionIcon
     }

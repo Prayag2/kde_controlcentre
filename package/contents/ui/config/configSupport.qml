@@ -1,20 +1,21 @@
-import QtQml 2.0
-import QtQuick 2.0
-import QtQuick.Controls 2.0
-import QtQuick.Layouts 1.0
-import org.kde.plasma.core 2.0 as PlasmaCore
-import org.kde.plasma.extras 2.0 as PlasmaExtras
+import QtQml
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Layouts
+import org.kde.kirigami as Kirigami
+import org.kde.plasma.core as PlasmaCore
+import org.kde.plasma.extras as PlasmaExtras
 
 ColumnLayout {
     Layout.fillHeight: true
     Layout.fillWidth: true
-    
-    PlasmaExtras.Heading {
+
+    Kirigami.Heading {
         text: i18n("If you'd like to support me :)")
     }
     Row {
         spacing: 10
-        height: PlasmaCore.Units.gridUnit * 2.5
+        height: Kirigami.Units.gridUnit * 2.5
         Image {
             height: parent.height
             source: "../../assets/LiberaPay.png"

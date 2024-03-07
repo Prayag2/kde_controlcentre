@@ -1,12 +1,14 @@
-import QtQuick 2.0
-import QtQuick.Controls 2.0
-import QtQuick.Layouts 1.15
-import QtGraphicalEffects 1.15
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Layouts
+import Qt5Compat.GraphicalEffects
 
-import org.kde.plasma.core 2.0 as PlasmaCore
-import org.kde.plasma.components 2.0 as PlasmaComponents
+import org.kde.kirigami as Kirigami
+import org.kde.ksvg as KSvg
+import org.kde.plasma.core as PlasmaCore
+import org.kde.plasma.components as PlasmaComponents
 
-PlasmaCore.FrameSvgItem {
+KSvg.FrameSvgItem {
     id: button
 
     imagePath: "widgets/viewitem"
@@ -20,7 +22,7 @@ PlasmaCore.FrameSvgItem {
     property alias title: title.text
     property alias subtitle: subtitle.text
     property alias source: icon.source
-    property alias sourceColor: icon.sourceColor
+    property alias sourceColor: icon.color
 
     property int margin: root.buttonMargin
 
@@ -32,7 +34,7 @@ PlasmaCore.FrameSvgItem {
         columnSpacing: root.mediumSpacing
         clip: true
 
-        Icon {
+        Kirigami.Icon {
             id: icon
             Layout.rowSpan: 2
             Layout.preferredHeight: parent.height - root.smallSpacing //

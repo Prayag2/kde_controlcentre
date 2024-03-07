@@ -34,7 +34,6 @@ function toggleBluetooth()
     }
 }
 
-
 function checkInhibition() {
     var inhibited = false;
 
@@ -56,28 +55,41 @@ function checkInhibition() {
     }
     return inhibited;
 }
-function revokeInhibitions() {
-    notificationSettings.notificationsInhibitedUntil = undefined;
-    notificationSettings.revokeApplicationInhibitions();
-    // overrules current mirrored screen setup, updates again when screen configuration changes
-    notificationSettings.screensMirrored = false;
 
-    notificationSettings.save();
+function toggleDoNotDisturb() {
+    if (Funcs.checkInhibition()) {
+        notificationSettings.notificationsInhibitedUntil = undefined;
+        notificationSettings.revokeApplicationInhibitions();
+
+        // overrules current mirrored screen setup, updates again when screen configuration
+        notificationSettings.screensMirrored = false;
+        notificationSettings.save();
+
+        return;
+    }
+
+    var d = new Date();
+    d.setYear(d.getFullYear()+1)
+
+    notificationSettings.notificationsInhibitedUntil = d
+    notificationSettings.save()
 }
 
-function toggleRedshiftInhibition() {
+function toggleNightLight() {
     if (!monitor.available) {
         return;
     }
+
     switch (inhibitor.state) {
-    case Redshift.Inhibitor.Inhibiting:
-    case Redshift.Inhibitor.Inhibited:
-        inhibitor.uninhibit();
-        break;
-    case Redshift.Inhibitor.Uninhibiting:
-    case Redshift.Inhibitor.Uninhibited:
-        inhibitor.inhibit();
-        break;
+        case NightColorInhibitor.Inhibiting:
+        case NightColorInhibitor.Inhibited:
+            inhibitor.uninhibit();
+            break;
+
+            case NightColorInhibitor.Uninhibiting:
+        case NightColorInhibitor.Uninhibited:
+            inhibitor.inhibit();
+            break;
     }
 }
 

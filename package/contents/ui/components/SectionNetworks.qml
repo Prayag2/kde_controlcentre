@@ -1,10 +1,12 @@
-import QtQuick 2.5
-import QtQuick.Controls 2.0
-import QtQuick.Layouts 1.15
-import org.kde.plasma.core 2.0 as PlasmaCore
-import org.kde.plasma.components 2.0 as PlasmaComponents
-import org.kde.plasma.components 3.0 as PlasmaComponents3
-import org.kde.plasma.networkmanagement 0.2 as PlasmaNM
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Layouts
+import org.kde.kirigami as Kirigami
+import org.kde.ksvg as KSvg
+import org.kde.plasma.core as PlasmaCore
+import org.kde.plasma.components as PlasmaComponents
+import org.kde.plasma.components as PlasmaComponents3
+import org.kde.plasma.networkmanagement as PlasmaNM
 import "../lib" as Lib
 
 Lib.Card {
@@ -56,7 +58,7 @@ Lib.Card {
 
                     PlasmaComponents.ToolButton {
                         Layout.preferredHeight: root.largeFontSize * 2.5
-                        iconSource: "arrow-left"
+                        icon.name: "arrow-left"
                         onClicked: {
                             sectionNetworks.toggleNetworkSection();
                         }
@@ -96,7 +98,7 @@ Lib.Card {
                             Timer {
                                 id: timer
 
-                                interval: PlasmaCore.Units.humanMoment
+                                interval: Kirigami.Units.humanMoment
                             }
 
                             Connections {
@@ -135,7 +137,7 @@ Lib.Card {
 
                 }
 
-                PlasmaCore.SvgItem {
+                KSvg.SvgItem {
                     id: separatorLine
 
                     z: 4
@@ -143,7 +145,7 @@ Lib.Card {
                     Layout.fillWidth: true
                     Layout.preferredHeight: root.scale
 
-                    svg: PlasmaCore.Svg {
+                    svg: KSvg.Svg {
                         imagePath: "widgets/line"
                     }
 

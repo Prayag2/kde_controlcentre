@@ -1,8 +1,9 @@
-import QtQuick 2.0
-import QtQuick.Layouts 1.15
-import org.kde.plasma.core 2.0 as PlasmaCore
-import org.kde.plasma.components 2.0 as PlasmaComponents2
-import org.kde.plasma.components 3.0 as PlasmaComponents
+import QtQuick
+import QtQuick.Layouts
+import org.kde.kirigami as Kirigami
+import org.kde.plasma.core as PlasmaCore
+import org.kde.plasma.components as PlasmaComponents2
+import org.kde.plasma.components as PlasmaComponents
 
 Card {
     id: sliderComp
@@ -59,23 +60,23 @@ Card {
             Layout.fillWidth: true
             spacing: root.smallSpacing
 
-            PlasmaCore.IconItem {
+            Kirigami.Icon {
                 id: icon
                 source: sliderComp.source
                 visible: !sliderComp.useIconButton
                 Layout.preferredHeight: root.largeFontSize*2
                 Layout.preferredWidth: Layout.preferredHeight
             }
-            
+
             PlasmaComponents2.ToolButton {
                 id: iconButton
                 visible: sliderComp.useIconButton
-                iconSource: sliderComp.source
+                icon.source: sliderComp.source
                 Layout.preferredHeight: root.largeFontSize*2
                 Layout.preferredWidth: Layout.preferredHeight
                 onClicked: sliderComp.clicked()
             }
-            
+
             PlasmaComponents.Slider {
                 id: slider
                 Layout.fillHeight: true
@@ -84,7 +85,7 @@ Card {
                 to: sliderComp.to
                 stepSize: 2
                 snapMode: Slider.SnapAlways
-                
+
                 onMoved: {
                     sliderComp.moved()
                 }

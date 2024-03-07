@@ -1,6 +1,6 @@
-import QtQuick 2.0
+import QtQuick
 import "../lib" as Lib
-import org.kde.plasma.networkmanagement 0.2 as PlasmaNM
+import org.kde.plasma.networkmanagement as PlasmaNM
 
 Lib.LongButton {
     title: Name
@@ -25,7 +25,7 @@ Lib.LongButton {
             return LastUsed
         } else if (ConnectionState === PlasmaNM.Enums.Activated) {
             return i18n("Connected")
-        } 
+        }
         return "Unknown"
     }
     subtitle: itemText()

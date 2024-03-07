@@ -1,12 +1,12 @@
-import QtQml 2.15
-import QtQuick 2.15
-import QtQuick.Controls 2.15
-import QtQuick.Layouts 1.15
+import QtQml
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Layouts
 
-import org.kde.kirigami 2.15 as Kirigami
-import org.kde.kquickcontrolsaddons 2.0 as KQuickAddons
-import org.kde.plasma.core 2.0 as PlasmaCore
-import org.kde.plasma.extras 2.0 as PlasmaExtras
+import org.kde.kirigami as Kirigami
+import org.kde.kquickcontrolsaddons as KQuickAddons
+import org.kde.plasma.core as PlasmaCore
+import org.kde.plasma.extras as PlasmaExtras
 
 ColumnLayout {
     property alias cfg_scale: scale.value
@@ -42,7 +42,7 @@ ColumnLayout {
         Button {
             id: mainIconName
             Kirigami.FormData.label: i18n("Icon:")
-            icon.width: PlasmaCore.Units.iconSizes.medium
+            icon.width: Kirigami.Units.iconSizes.medium
             icon.height: icon.width
             onClicked: {
                 iconDialog.open()
@@ -80,11 +80,11 @@ ColumnLayout {
             text: i18n('KDE Connect')
             enabled: !checked && numChecked < maxNum || checked
         }
-        CheckBox {
-            id: showNightColor
-            text: i18n('Night Color')
-            enabled: !checked && numChecked < maxNum || checked
-        }
+        // CheckBox {
+        //     id: showNightColor
+        //     text: i18n('Night Color')
+        //     enabled: !checked && numChecked < maxNum || checked
+        // }
         CheckBox {
             id: showColorSwitcher
             text: i18n('Color Scheme Switcher')
@@ -108,7 +108,7 @@ ColumnLayout {
             Button {
                 id: cmdIcon1
                 Kirigami.FormData.label: i18n("Icon:")
-                icon.width: PlasmaCore.Units.iconSizes.medium
+                icon.width: Kirigami.Units.iconSizes.medium
                 icon.height: icon.width
                 onClicked: {
                     iconDialog.open()
@@ -134,7 +134,7 @@ ColumnLayout {
             Button {
                 id: cmdIcon2
                 Kirigami.FormData.label: i18n("Icon:")
-                icon.width: PlasmaCore.Units.iconSizes.medium
+                icon.width: Kirigami.Units.iconSizes.medium
                 icon.height: icon.width
                 onClicked: {
                     iconDialog.open()
@@ -144,8 +144,8 @@ ColumnLayout {
         }
         Label {
             text: i18n("You can enable only 2 toggle buttons at a time.")
-            font: PlasmaCore.Theme.smallestFont
-            color: PlasmaCore.Theme.neutralTextColor
+            font: Kirigami.Theme.smallFont
+            color: Kirigami.Theme.neutralTextColor
             Layout.fillWidth: true
             wrapMode: Text.Wrap
         }
