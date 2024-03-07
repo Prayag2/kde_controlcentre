@@ -23,6 +23,27 @@ function getBtDevice() {
     }
 }
 
+function getVolumeIconName(volume, muted) {
+    var icon = null;
+    const percent = volumePercent(volume);
+
+    if (percent <= 0 || muted) {
+        icon = prefix + "-muted";
+    } else if (percent <= 25) {
+        icon = prefix + "-low";
+    } else if (percent <= 75) {
+        icon = prefix + "-medium";
+    } else if (percent <= highUpperBound) {
+        icon = prefix + "-high";
+    } else if (percent <= veryHighUpperBound) {
+        icon = `-high-warning`;
+    } else {
+        icon = `-high-danger`;
+    }
+
+    return "audio-volume" + icon;
+}
+
 function toggleBluetooth()
 {
     var enable = !btManager.bluetoothOperational;
@@ -111,20 +132,4 @@ function changeVolumeByPercent(volumeObject, deltaPercent) {
     volumeObject.volume = newVolume;
     return newPercent;
 }
-function volIconName(volume, muted, prefix) {
-    if (!prefix) {
-        prefix = "audio-volume";
-    }
-    var icon = null;
-    var percent = volume / Vol.PulseAudio.NormalVolume
-    if (percent <= 0.0 || muted) {
-        icon = prefix + "-muted";
-    } else if (percent <= 0.25) {
-        icon = prefix + "-low";
-    } else if (percent <= 0.75) {
-        icon = prefix + "-medium";
-    } else {
-        icon = prefix + "-high";
-    }
-    return icon;
-}
+

@@ -31,7 +31,7 @@ Lib.Slider {
     secondaryTitle: Math.round(sink.volume / Vol.PulseAudio.NormalVolume * 100) + "%"
 
     // Changes icon based on the current volume percentage
-    source: Funcs.volIconName(sink.volume, sink.muted)
+    source: Funcs.getVolumeIconName(sink.volume, sink.muted)
 
     onValueChanged: {
         if(root.playVolumeFeedback) {
