@@ -33,7 +33,7 @@ To Do:
 - [X] Basic functionality (toggles, volume/brightness sliders, light/dark mode)
 - [X] Fix the media player section
 - [X] Fix the 'appearance' configuration section
-- [ ] (Bug) Light/dark mode toggle sometimes not showing the correct status.
+- [X] (Bug) Light/dark mode toggle sometimes not showing the correct status when first added.
 - [X] (Bug) Prompt alerts in the configuration page not working 'as expected' in certain situations.
 
 ## Installation

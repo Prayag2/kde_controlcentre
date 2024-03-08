@@ -16,16 +16,13 @@ Lib.CardButton {
     visible: root.showColorSwitcher
     Layout.fillHeight: true
     Layout.fillWidth: true
-    title: i18n(Plasmoid.configuration.isDarkTheme ? "Light Theme" : "Dark Theme")
+    title: i18n(isDarkTheme() ? "Light Theme" : "Dark Theme")
     Kirigami.Icon {
         anchors.fill: parent
-        source: Plasmoid.configuration.isDarkTheme ? "brightness-high" : "brightness-low"
+        source: isDarkTheme() ? "brightness-high" : "brightness-low"
     }
 
-    onClicked: {
-        executable.swapColorScheme();
-        Plasmoid.configuration.isDarkTheme = !Plasmoid.configuration.isDarkTheme
-    }
+    onClicked: executable.swapColorScheme()
 
     PlasmaCore.DataSource {
         id: executable
@@ -40,8 +37,34 @@ Lib.CardButton {
         }
 
         function swapColorScheme() {
-            var colorSchemeName = Plasmoid.configuration.isDarkTheme ? Plasmoid.configuration.lightTheme : Plasmoid.configuration.darkTheme
+            var usingDark = isDarkTheme();
+            var colorSchemeName = usingDark ? Plasmoid.configuration.lightTheme : Plasmoid.configuration.darkTheme;
+            Plasmoid.configuration.isDarkTheme = !usingDark ? 1 : 0;
+
             exec("plasma-apply-colorscheme " + colorSchemeName)
         }
+    }
+
+    // Functions //
+
+    function isDarkTheme() {
+        if (Plasmoid.configuration.isDarkTheme == -1)
+        {
+            // TODO: Try to find a better way of doing this
+            // When first added, use the theme's background brightness to see if 'dark mode' is active
+            // (May not detect some 'grey' dark themes).
+            var darkMode = sysPalette.window.hslLightness <= 0.4;
+
+            Plasmoid.configuration.isDarkTheme = darkMode ? 1 : 0;
+            return darkMode;
+        }
+
+        return Plasmoid.configuration.isDarkTheme == 1;
+    }
+
+    // Components //
+
+    SystemPalette {
+        id: sysPalette
     }
 }
