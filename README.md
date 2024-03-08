@@ -32,9 +32,9 @@ To Do:
 - [X] Port plasmoid to Qt/Plasma 6
 - [X] Basic functionality (toggles, volume/brightness sliders, light/dark mode)
 - [X] Fix the media player section
-- [ ] Fix the 'appearance' configuration section
-- [ ] (Bug) Light/dark mode toggle not showing the correct status.
-- [ ] (Bug) Alerts in the configuration page not working 'as expected' in certain situations.
+- [X] Fix the 'appearance' configuration section
+- [ ] (Bug) Light/dark mode toggle sometimes not showing the correct status.
+- [X] (Bug) Prompt alerts in the configuration page not working 'as expected' in certain situations.
 
 ## Installation
 #### KDE Store (Preferred way)

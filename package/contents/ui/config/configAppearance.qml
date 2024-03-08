@@ -4,11 +4,11 @@ import QtQuick.Controls
 import QtQuick.Layouts
 
 import org.kde.kirigami as Kirigami
-import org.kde.kquickcontrolsaddons as KQuickAddons
-import org.kde.plasma.core as PlasmaCore
-import org.kde.plasma.extras as PlasmaExtras
+import org.kde.iconthemes as KIconThemes
+import org.kde.kcmutils as KCM
 
-ColumnLayout {
+
+KCM.SimpleKCM {
     property alias cfg_scale: scale.value
     property alias cfg_transparency: transparency.checked
     property alias cfg_showKDEConnect: showKDEConnect.checked
@@ -31,22 +31,15 @@ ColumnLayout {
     property int numChecked: showKDEConnect.checked + showColorSwitcher.checked + showNightColor.checked + showCmd1.checked + showCmd2.checked
     property int maxNum: 2
 
-    // Used to select icons
-    KQuickAddons.IconDialog {
-        id: iconDialog
-        property var iconObj
-        onIconNameChanged: iconObj.name = iconName
-    }
-
     Kirigami.FormLayout {
         Button {
             id: mainIconName
             Kirigami.FormData.label: i18n("Icon:")
             icon.width: Kirigami.Units.iconSizes.medium
             icon.height: icon.width
+
             onClicked: {
-                iconDialog.open()
-                iconDialog.iconObj= mainIconName.icon
+                iconDialog.openIconDialog(0);
             }
         }
 
@@ -80,11 +73,11 @@ ColumnLayout {
             text: i18n('KDE Connect')
             enabled: !checked && numChecked < maxNum || checked
         }
-        // CheckBox {
-        //     id: showNightColor
-        //     text: i18n('Night Color')
-        //     enabled: !checked && numChecked < maxNum || checked
-        // }
+        CheckBox {
+            id: showNightColor
+            text: i18n('Night Color')
+            enabled: !checked && numChecked < maxNum || checked
+        }
         CheckBox {
             id: showColorSwitcher
             text: i18n('Color Scheme Switcher')
@@ -111,8 +104,7 @@ ColumnLayout {
                 icon.width: Kirigami.Units.iconSizes.medium
                 icon.height: icon.width
                 onClicked: {
-                    iconDialog.open()
-                    iconDialog.iconObj= cmdIcon1.icon
+                    iconDialog.openIconDialog(1);
                 }
             }
         }
@@ -137,8 +129,7 @@ ColumnLayout {
                 icon.width: Kirigami.Units.iconSizes.medium
                 icon.height: icon.width
                 onClicked: {
-                    iconDialog.open()
-                    iconDialog.iconObj= cmdIcon2.icon
+                    iconDialog.openIconDialog(2);
                 }
             }
         }
@@ -171,5 +162,36 @@ ColumnLayout {
 
     Item {
         Layout.fillHeight: true
+    }
+
+    // Components //
+
+    KIconThemes.IconDialog {
+        id: iconDialog
+        property int iconTarget: -1
+
+        onIconNameChanged: iconName => {
+            switch (iconDialog.iconTarget) {
+                case 0:
+                    cfg_mainIconName = iconName;
+                    break;
+
+                case 1:
+                    cfg_cmdIcon1 = iconName;
+                    break;
+
+                case 2:
+                    cfg_cmdIcon2 = iconName;
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
+        function openIconDialog(target) {
+            iconDialog.iconTarget = target;
+            iconDialog.open();
+        }
     }
 }

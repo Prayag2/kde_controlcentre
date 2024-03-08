@@ -54,7 +54,6 @@ Lib.Card {
                 font.capitalization: Font.Capitalize
                 font.weight: Font.Bold
                 font.pixelSize: root.largeFontSize
-                horizontalAlignment: Text.AlignHCenter
                 elide: Text.ElideRight
             }
 

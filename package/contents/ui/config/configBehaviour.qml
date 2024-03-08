@@ -4,11 +4,11 @@ import QtQuick.Controls
 import QtQuick.Layouts
 
 import org.kde.kirigami as Kirigami
-import org.kde.kquickcontrolsaddons as KQuickAddons
 import org.kde.plasma.core as PlasmaCore
 import org.kde.plasma.extras as PlasmaExtras
+import org.kde.kcmutils as KCM
 
-ColumnLayout {
+KCM.SimpleKCM {
     property alias cfg_playVolumeFeedback: playVolumeFeedback.checked
 
 

@@ -4,8 +4,9 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import org.kde.plasma.plasma5support as PlasmaCore
 import org.kde.plasma.extras as PlasmaExtras
+import org.kde.kcmutils as KCM
 
-Item {
+KCM.SimpleKCM {
     property alias cfg_lightTheme: labelA.text // labels to store previous choices (ComboBox doesn't like to do it by itself)
     property alias cfg_darkTheme: labelB.text // labels to store previous choices (ComboBox doesn't like to do it by itself)
 
