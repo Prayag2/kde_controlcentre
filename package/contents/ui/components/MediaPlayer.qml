@@ -17,7 +17,7 @@ Lib.Card {
 
     readonly property string trackName: model.currentPlayer?.track ?? i18n("Unknown Media")
     readonly property string trackArtist: model.currentPlayer?.artist ?? i18n("Unknown Artist")
-    readonly property string trackArt: model.currentPlayer?.artUrl ?? "../../assets/music.png"
+    readonly property string trackArt: model.currentPlayer?.artUrl ?? ""
 
     RowLayout {
         anchors.fill: parent
@@ -28,7 +28,13 @@ Lib.Card {
         Image {
             id: audioThumb
             fillMode: Image.PreserveAspectCrop
-            source: mediaPlayer.trackArt
+            source: {
+                if (mediaPlayer.trackArt.trim().length < 1) {
+                    return "../../assets/music.png";
+                }
+
+                return mediaPlayer.trackArt;
+            }
 
             Layout.fillHeight: true
             Layout.preferredWidth: height
