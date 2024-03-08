@@ -34,9 +34,11 @@ Lib.Slider {
     source: Funcs.getVolumeIconName(sink.volume, sink.muted)
 
     onValueChanged: {
-        if(root.playVolumeFeedback) {
-            feedback.play(sink.index)
+        if(!root.playVolumeFeedback || debounce.limit()) {
+            return;
         }
+
+        feedback.play(sink.index)
     }
     // Update volume
     onMoved: {
@@ -50,6 +52,23 @@ Lib.Slider {
             sink.volume=0
         } else {
             sink.volume=oldVol
+        }
+    }
+
+    // Components //
+
+    Timer {
+        id: debounce
+        interval: 150 // ms
+
+        function limit()
+        {
+            if (debounce.running) {
+                return true;
+            }
+
+            debounce.start();
+            return false;
         }
     }
 }
