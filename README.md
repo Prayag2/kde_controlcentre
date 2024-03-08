@@ -22,19 +22,11 @@
 - Packages: `plasma-nm`, `kdeplasma-addons`, `plasma-pa`
 - KDE Connect
 
-## Plasma/Qt 6 Port Notes!
-Make sure to have the 'Qt 5 compatibility' package installed for QtGraphicalEffects to work!
+## Plasma/Qt 6 Notes!
+Make sure to have the 'Qt 5 compatibility' package installed for [QtGraphicalEffects](https://forum.qt.io/topic/121329/qtgraphicaleffects-not-available-in-qt6-qml/9) to work!
 You can install it on Arch using: <br />
 
-`pacman -S qt6-5compat` <br />
-
-To Do:
-- [X] Port plasmoid to Qt/Plasma 6
-- [X] Basic functionality (toggles, volume/brightness sliders, light/dark mode)
-- [X] Fix the media player section
-- [X] Fix the 'appearance' configuration section
-- [X] (Bug) Light/dark mode toggle sometimes not showing the correct status when first added.
-- [X] (Bug) Prompt alerts in the configuration page not working 'as expected' in certain situations.
+`pacman -S qt6-5compat` 
 
 ## Installation
 #### KDE Store (Preferred way)
@@ -47,13 +39,11 @@ To Do:
 
 #### From this repository (Not Stable!)
 1. Clone this repository then 'cd' into the root project directory.
-2. Then install it using:
-```plasmapkg2 -i package```
-3. Once installed, you can update the 'installed' plasmoid with:
-```plasmapkg2 -u package```.
-
+2. Install it using ```plasmapkg2 -i package```
+3. Or update it with ```git pull; plasmapkg2 -u package```
 <br />
-*Notes: You can find the files at `~/.local/share/plasma/plasmoids/`. You can remove Control Centre by deleting 'com.github.prayag2.controlcentre' directly, or by using the 'Add Widgets' interface. Also, if you've updated the source files, make sure to restart plasma using `plasmashell --replace` in order to see the changes.*
+
+*Notes: You can find the files at `~/.local/share/plasma/plasmoids/`. You can remove Control Centre by deleting **'com.github.prayag2.controlcentre'** directly, or by using the 'Add Widgets' interface. After updating, make sure to restart plasma using `plasmashell --replace` to see the changes.*
 
 ## Usage
 1. Right click on the desktop.
