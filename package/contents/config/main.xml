@@ -12,8 +12,8 @@
         <entry name="transparency" type="Bool">
             <default>False</default>
         </entry>
-        <entry name="isDarkTheme" type="bool">
-            <default>false</default>
+        <entry name="isDarkTheme" type="int">
+            <default>-1</default>
         </entry>
         <entry name="mainIconHeight" type="int">
             <default>24</default>
@@ -29,13 +29,13 @@
             <label>Dark Theme</label>
             <default>BreezeDark</default>
         </entry>
-        
+
         <!--    BEHAVIOUR      -->
         <entry name="playVolumeFeedback" type="Bool">
             <label>Play Volume Feedback</label>
             <default>True</default>
         </entry>
-        
+
         <!--    SHOW/HIDE Components      -->
         <entry name="showKDEConnect" type="bool">
             <default>false</default>
@@ -67,7 +67,7 @@
         <entry name="showPercentage" type="bool">
             <default>false</default>
         </entry>
-        
+
         <!--      HEHEHE GET RICKROLLED LOL        -->
         <entry name="cmdRun1" type="string">
             <default>xdg-open "https://shattereddisk.github.io/rickroll/rickroll.mp4"</default>

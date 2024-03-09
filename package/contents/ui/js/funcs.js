@@ -23,6 +23,27 @@ function getBtDevice() {
     }
 }
 
+function getVolumeIconName(volume, muted) {
+    var icon = null;
+    const percent = volumePercent(volume);
+
+    if (percent <= 0 || muted) {
+        icon = prefix + "-muted";
+    } else if (percent <= 25) {
+        icon = prefix + "-low";
+    } else if (percent <= 75) {
+        icon = prefix + "-medium";
+    } else if (percent <= highUpperBound) {
+        icon = prefix + "-high";
+    } else if (percent <= veryHighUpperBound) {
+        icon = `-high-warning`;
+    } else {
+        icon = `-high-danger`;
+    }
+
+    return "audio-volume" + icon;
+}
+
 function toggleBluetooth()
 {
     var enable = !btManager.bluetoothOperational;
@@ -33,7 +54,6 @@ function toggleBluetooth()
         adapter.powered = enable;
     }
 }
-
 
 function checkInhibition() {
     var inhibited = false;
@@ -56,28 +76,41 @@ function checkInhibition() {
     }
     return inhibited;
 }
-function revokeInhibitions() {
-    notificationSettings.notificationsInhibitedUntil = undefined;
-    notificationSettings.revokeApplicationInhibitions();
-    // overrules current mirrored screen setup, updates again when screen configuration changes
-    notificationSettings.screensMirrored = false;
 
-    notificationSettings.save();
+function toggleDoNotDisturb() {
+    if (Funcs.checkInhibition()) {
+        notificationSettings.notificationsInhibitedUntil = undefined;
+        notificationSettings.revokeApplicationInhibitions();
+
+        // overrules current mirrored screen setup, updates again when screen configuration
+        notificationSettings.screensMirrored = false;
+        notificationSettings.save();
+
+        return;
+    }
+
+    var d = new Date();
+    d.setYear(d.getFullYear()+1)
+
+    notificationSettings.notificationsInhibitedUntil = d
+    notificationSettings.save()
 }
 
-function toggleRedshiftInhibition() {
+function toggleNightLight() {
     if (!monitor.available) {
         return;
     }
+
     switch (inhibitor.state) {
-    case Redshift.Inhibitor.Inhibiting:
-    case Redshift.Inhibitor.Inhibited:
-        inhibitor.uninhibit();
-        break;
-    case Redshift.Inhibitor.Uninhibiting:
-    case Redshift.Inhibitor.Uninhibited:
-        inhibitor.inhibit();
-        break;
+        case NightColorInhibitor.Inhibiting:
+        case NightColorInhibitor.Inhibited:
+            inhibitor.uninhibit();
+            break;
+
+            case NightColorInhibitor.Uninhibiting:
+        case NightColorInhibitor.Uninhibited:
+            inhibitor.inhibit();
+            break;
     }
 }
 
@@ -99,20 +132,4 @@ function changeVolumeByPercent(volumeObject, deltaPercent) {
     volumeObject.volume = newVolume;
     return newPercent;
 }
-function volIconName(volume, muted, prefix) {
-    if (!prefix) {
-        prefix = "audio-volume";
-    }
-    var icon = null;
-    var percent = volume / Vol.PulseAudio.NormalVolume
-    if (percent <= 0.0 || muted) {
-        icon = prefix + "-muted";
-    } else if (percent <= 0.25) {
-        icon = prefix + "-low";
-    } else if (percent <= 0.75) {
-        icon = prefix + "-medium";
-    } else {
-        icon = prefix + "-high";
-    }
-    return icon;
-}
+

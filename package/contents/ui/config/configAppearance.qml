@@ -1,14 +1,14 @@
-import QtQml 2.15
-import QtQuick 2.15
-import QtQuick.Controls 2.15
-import QtQuick.Layouts 1.15
+import QtQml
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Layouts
 
-import org.kde.kirigami 2.15 as Kirigami
-import org.kde.kquickcontrolsaddons 2.0 as KQuickAddons
-import org.kde.plasma.core 2.0 as PlasmaCore
-import org.kde.plasma.extras 2.0 as PlasmaExtras
+import org.kde.kirigami as Kirigami
+import org.kde.iconthemes as KIconThemes
+import org.kde.kcmutils as KCM
 
-ColumnLayout {
+
+KCM.SimpleKCM {
     property alias cfg_scale: scale.value
     property alias cfg_transparency: transparency.checked
     property alias cfg_showKDEConnect: showKDEConnect.checked
@@ -31,22 +31,15 @@ ColumnLayout {
     property int numChecked: showKDEConnect.checked + showColorSwitcher.checked + showNightColor.checked + showCmd1.checked + showCmd2.checked
     property int maxNum: 2
 
-    // Used to select icons
-    KQuickAddons.IconDialog {
-        id: iconDialog
-        property var iconObj
-        onIconNameChanged: iconObj.name = iconName
-    }
-
     Kirigami.FormLayout {
         Button {
             id: mainIconName
             Kirigami.FormData.label: i18n("Icon:")
-            icon.width: PlasmaCore.Units.iconSizes.medium
+            icon.width: Kirigami.Units.iconSizes.medium
             icon.height: icon.width
+
             onClicked: {
-                iconDialog.open()
-                iconDialog.iconObj= mainIconName.icon
+                iconDialog.openIconDialog(0);
             }
         }
 
@@ -108,11 +101,10 @@ ColumnLayout {
             Button {
                 id: cmdIcon1
                 Kirigami.FormData.label: i18n("Icon:")
-                icon.width: PlasmaCore.Units.iconSizes.medium
+                icon.width: Kirigami.Units.iconSizes.medium
                 icon.height: icon.width
                 onClicked: {
-                    iconDialog.open()
-                    iconDialog.iconObj= cmdIcon1.icon
+                    iconDialog.openIconDialog(1);
                 }
             }
         }
@@ -134,18 +126,17 @@ ColumnLayout {
             Button {
                 id: cmdIcon2
                 Kirigami.FormData.label: i18n("Icon:")
-                icon.width: PlasmaCore.Units.iconSizes.medium
+                icon.width: Kirigami.Units.iconSizes.medium
                 icon.height: icon.width
                 onClicked: {
-                    iconDialog.open()
-                    iconDialog.iconObj= cmdIcon2.icon
+                    iconDialog.openIconDialog(2);
                 }
             }
         }
         Label {
             text: i18n("You can enable only 2 toggle buttons at a time.")
-            font: PlasmaCore.Theme.smallestFont
-            color: PlasmaCore.Theme.neutralTextColor
+            font: Kirigami.Theme.smallFont
+            color: Kirigami.Theme.neutralTextColor
             Layout.fillWidth: true
             wrapMode: Text.Wrap
         }
@@ -171,5 +162,36 @@ ColumnLayout {
 
     Item {
         Layout.fillHeight: true
+    }
+
+    // Components //
+
+    KIconThemes.IconDialog {
+        id: iconDialog
+        property int iconTarget: -1
+
+        onIconNameChanged: iconName => {
+            switch (iconDialog.iconTarget) {
+                case 0:
+                    cfg_mainIconName = iconName;
+                    break;
+
+                case 1:
+                    cfg_cmdIcon1 = iconName;
+                    break;
+
+                case 2:
+                    cfg_cmdIcon2 = iconName;
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
+        function openIconDialog(target) {
+            iconDialog.iconTarget = target;
+            iconDialog.open();
+        }
     }
 }
