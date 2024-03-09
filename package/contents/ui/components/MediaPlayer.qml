@@ -21,9 +21,9 @@ Lib.Card {
 
     RowLayout {
         anchors.fill: parent
-        anchors.margins: mediaPlayer.largeSpacing
+        anchors.margins: root.largeSpacing
         Layout.fillWidth: true
-        Layout.preferredHeight: mediaPlayer.sectionHeight/2
+        Layout.preferredHeight: root.sectionHeight/2
 
         Image {
             id: audioThumb
@@ -48,13 +48,7 @@ Lib.Card {
 
             PlasmaComponents.Label {
                 id: audioTitle
-                text: {
-                    if (mediaPlayer.isStopped) {
-                        return i18n("No Media Playing");
-                    }
-
-                    return mediaPlayer.trackName;
-                }
+                text: mediaPlayer.trackName
 
                 Layout.fillWidth: true
                 font.capitalization: Font.Capitalize
@@ -74,7 +68,6 @@ Lib.Card {
 
         RowLayout {
             id: audioControls
-            visible: !mediaPlayer.isStopped
 
             Layout.alignment: Qt.AlignRight
 
@@ -86,7 +79,7 @@ Lib.Card {
                 MouseArea {
                     anchors.fill: parent
                     onClicked: {
-                        model.currentPlayer.Previous();
+                        model.currentPlayer?.Previous();
                     }
                 }
             }
@@ -101,7 +94,7 @@ Lib.Card {
                 MouseArea {
                     anchors.fill: parent
                     onClicked: {
-                        model.currentPlayer.PlayPause();
+                        model.currentPlayer?.PlayPause();
                     }
                 }
             }
@@ -114,7 +107,7 @@ Lib.Card {
                 MouseArea {
                     anchors.fill: parent
                     onClicked: {
-                        model.currentPlayer.Next();
+                        model.currentPlayer?.Next();
                     }
                 }
             }
