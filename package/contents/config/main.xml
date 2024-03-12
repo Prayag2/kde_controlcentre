@@ -29,6 +29,14 @@
             <label>Dark Theme</label>
             <default>BreezeDark</default>
         </entry>
+        <entry name="lightPlasmaTheme" type="String">
+            <label>Plasma Theme (Light)</label>
+            <default>breeze-light</default>
+        </entry>
+        <entry name="darkPlasmaTheme" type="String">
+            <label>Plasma Theme (Dark)</label>
+            <default>breeze-dark</default>
+        </entry>
 
         <!--    BEHAVIOUR      -->
         <entry name="playVolumeFeedback" type="Bool">
