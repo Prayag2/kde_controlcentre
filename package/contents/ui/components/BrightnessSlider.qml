@@ -1,31 +1,31 @@
-import QtQml 2.0
-import QtQuick 2.0
-import QtQuick.Layouts 1.15
-import org.kde.plasma.core 2.0 as PlasmaCore
-import org.kde.plasma.components 2.0 as PlasmaComponents
+import QtQml
+import QtQuick
+import QtQuick.Layouts
+import org.kde.plasma.plasma5support as PlasmaCore
+import org.kde.plasma.components as PlasmaComponents
 import "../lib" as Lib
 import "../js/brightness.js" as BrightnessJS
 
 
 Lib.Slider {
     id: brightnessControl
-    
+
     // Should be visible ONLY if the monitor supports it
     visible: isBrightnessAvailable && root.showBrightness
-    
+
     // Dimensions
     Layout.fillWidth: true
     Layout.preferredHeight: root.sectionHeight/2
-    
+
     // Slider properties
     title: "Display Brightness"
     source: "brightness-high"
     secondaryTitle: Math.round((screenBrightness / maximumScreenBrightness)*100) + "%"
-    
+
     from: 0
     to: maximumScreenBrightness
     value: screenBrightness
-    
+
     // Other properties
     property int screenBrightness
     property QtObject updateScreenBrightnessJob
@@ -36,7 +36,7 @@ Lib.Slider {
         id: pmSource
         engine: "powermanagement"
         connectedSources: sources
- 
+
         onSourceAdded: {
             disconnectSource(source);
             connectSource(source);
@@ -65,7 +65,7 @@ Lib.Slider {
             BrightnessJS.updateBrightness(brightnessControl, pmSource);
         });
     }
-    
+
     onMoved: {
         screenBrightness = value
     }

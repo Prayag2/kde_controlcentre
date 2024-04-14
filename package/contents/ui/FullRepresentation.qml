@@ -1,21 +1,21 @@
-import QtQml 2.0
-import QtQuick 2.0
-import QtQuick.Layouts 1.15
-import QtQuick.Controls 2.0
+import QtQml
+import QtQuick
+import QtQuick.Layouts
+import QtQuick.Controls
 
-import org.kde.plasma.plasmoid 2.0
-import org.kde.plasma.core 2.0 as PlasmaCore
-import org.kde.plasma.extras 2.0 as PlasmaExtras
-import org.kde.plasma.components 2.0 as PlasmaComponents
+import org.kde.plasma.plasmoid
+import org.kde.plasma.core as PlasmaCore
+import org.kde.plasma.extras as PlasmaExtras
+import org.kde.plasma.components as PlasmaComponents
 
 import "lib" as Lib
 import "components" as Components
-import "js/funcs.js" as Funcs 
+import "js/funcs.js" as Funcs
 
 
 Item {
     id: fullRep
-    
+
     // PROPERTIES
     Layout.preferredWidth: root.fullRepWidth
     Layout.preferredHeight: wrapper.implicitHeight
@@ -24,7 +24,7 @@ Item {
     Layout.minimumHeight: Layout.preferredHeight
     Layout.maximumHeight: Layout.preferredHeight
     clip: true
-    
+
     // Lists all available network connections
     Components.SectionNetworks{
         id: sectionNetworks
@@ -44,18 +44,18 @@ Item {
             Layout.fillWidth: true
             Layout.preferredHeight: root.sectionHeight
             Layout.maximumHeight: root.sectionHeight
-            
+
             // Network, Bluetooth and Settings Button
             Components.SectionButtons{}
-            
+
             // Quick Toggle Buttons
             ColumnLayout {
                 spacing: 0
-                
+
                 Components.DndButton{}
                 RowLayout {
                     spacing: 0
-                    
+
                     // Two blocks for custom commands
                     Components.CommandRun{
                         visible: root.showCmd1
@@ -69,7 +69,7 @@ Item {
                         icon: root.cmdIcon2
                         command: root.cmdRun2
                     }
-                    
+
                     // Other blocks
                     Components.KDEConnect{}
                     Components.RedShift{}
@@ -90,7 +90,7 @@ Item {
             Components.BrightnessSlider{}
             Components.MediaPlayer{}
         }
-        
+
 
     }
 }

@@ -22,6 +22,12 @@
 - Packages: `plasma-nm`, `kdeplasma-addons`, `plasma-pa`
 - KDE Connect
 
+## Plasma/Qt 6 Notes!
+Make sure to have the 'Qt 5 compatibility' package installed for [QtGraphicalEffects](https://forum.qt.io/topic/121329/qtgraphicaleffects-not-available-in-qt6-qml/9) to work!
+You can install it on Arch using: <br />
+
+`pacman -S qt6-5compat` 
+
 ## Installation
 #### KDE Store (Preferred way)
 1. Right click on the desktop
@@ -32,10 +38,12 @@
 6. Click on "Install" and you're done!
 
 #### From this repository (Not Stable!)
-1. Clone this repository  
-```git clone https://github.com/prayag2/kde_controlcentre && cd kde_controlcentre/```
-2. Install using the script  
-```kpackagetool5 -i package```
+1. Clone this repository then 'cd' into the root project directory.
+2. Install it using ```plasmapkg2 -i package```
+3. Or update it with ```git pull; plasmapkg2 -u package```
+<br />
+
+*Notes: You can find the files at `~/.local/share/plasma/plasmoids/`. You can remove Control Centre by deleting **'com.github.prayag2.controlcentre'** directly, or by using the 'Add Widgets' interface. After updating, make sure to restart plasma using `plasmashell --replace` to see the changes.*
 
 ## Usage
 1. Right click on the desktop.

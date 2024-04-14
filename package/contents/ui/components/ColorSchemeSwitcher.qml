@@ -1,10 +1,11 @@
-import QtQml 2.0
-import QtQuick 2.0
-import QtQuick.Layouts 1.15
-import QtQuick.Controls 2.0
+import QtQml
+import QtQuick
+import QtQuick.Layouts
+import QtQuick.Controls
 
-import org.kde.plasma.plasmoid 2.0
-import org.kde.plasma.core 2.0 as PlasmaCore
+import org.kde.kirigami as Kirigami
+import org.kde.plasma.plasmoid
+import org.kde.plasma.plasma5support as PlasmaCore
 
 import "../lib" as Lib
 
@@ -15,32 +16,55 @@ Lib.CardButton {
     visible: root.showColorSwitcher
     Layout.fillHeight: true
     Layout.fillWidth: true
-    title: i18n(Plasmoid.configuration.isDarkTheme ? "Light Theme" : "Dark Theme")
-    PlasmaCore.IconItem {
+    title: i18n(isDarkTheme() ? "Light Theme" : "Dark Theme")
+    Kirigami.Icon {
         anchors.fill: parent
-        source: Plasmoid.configuration.isDarkTheme ? "brightness-high" : "brightness-low"
+        source: isDarkTheme() ? "brightness-high" : "brightness-low"
     }
 
-    onClicked: {
-        executable.swapColorScheme();
-        Plasmoid.configuration.isDarkTheme = !Plasmoid.configuration.isDarkTheme
-    }
+    onClicked: executable.swapColorScheme()
 
     PlasmaCore.DataSource {
         id: executable
         engine: "executable"
         connectedSources: []
-        onNewData: { 
+        onNewData: {
             disconnectSource(sourceName)
         }
-        
+
         function exec(cmd) {
             connectSource(cmd)
         }
 
         function swapColorScheme() {
-            var colorSchemeName = Plasmoid.configuration.isDarkTheme ? Plasmoid.configuration.lightTheme : Plasmoid.configuration.darkTheme
+            var usingDark = isDarkTheme();
+            var colorSchemeName = usingDark ? Plasmoid.configuration.lightTheme : Plasmoid.configuration.darkTheme;
+            Plasmoid.configuration.isDarkTheme = !usingDark ? 1 : 0;
+
             exec("plasma-apply-colorscheme " + colorSchemeName)
         }
+    }
+
+    // Functions //
+
+    function isDarkTheme() {
+        if (Plasmoid.configuration.isDarkTheme == -1)
+        {
+            // TODO: Try to find a better way of doing this
+            // When first added, use the theme's background brightness to see if 'dark mode' is active
+            // (May not detect some 'grey' dark themes).
+            var darkMode = sysPalette.window.hslLightness <= 0.4;
+
+            Plasmoid.configuration.isDarkTheme = darkMode ? 1 : 0;
+            return darkMode;
+        }
+
+        return Plasmoid.configuration.isDarkTheme == 1;
+    }
+
+    // Components //
+
+    SystemPalette {
+        id: sysPalette
     }
 }
