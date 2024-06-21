@@ -4,7 +4,7 @@ import org.kde.plasma.networkmanagement as PlasmaNM
 
 Item {
     property var appletProxyModel: appletProxyModel
-    property var networkStatus: networkStatus.networkStatus
+    property var netStatusText: netStatus.activeConnections
     property var activeConnectionIcon: activeConnectionIcon.connectionIcon
     property var enabledConnections: enabledConnections
     property var availableDevices: availableDevices
@@ -13,12 +13,15 @@ Item {
 
     PlasmaNM.ConnectionIcon {
         id: activeConnectionIcon
+        connectivity: netStatus.connectivity
     }
+
+    PlasmaNM.NetworkStatus {
+        id: netStatus
+    }
+
     PlasmaNM.Handler {
         id: handler
-    }
-    PlasmaNM.NetworkStatus {
-        id: networkStatus
     }
     PlasmaNM.AppletProxyModel {
         id: appletProxyModel
