@@ -6,6 +6,9 @@ import org.kde.plasma.core as PlasmaCore
 import org.kde.bluezqt as BluezQt
 import org.kde.kcmutils
 
+import org.kde.kirigami as Kirigami
+import org.kde.plasma.networkmanagement as PlasmaNM
+
 import "../lib" as Lib
 import "../js/funcs.js" as Funcs
 
@@ -33,10 +36,16 @@ Lib.Card {
 
         Lib.LongButton {
             title: i18n("Network")
-            subtitle: network.networkStatus
+            subtitle: network.netStatusText
             source: network.activeConnectionIcon
-            sourceColor: network.networkStatus === "Connected" ?
+
+            // TODO:Better method?
+            // Replacement for previous implementation //
+            // I'm not too familiar with the KDE/Qt API, so maybe
+            // there's a better way of getting the connectivity state?
+            sourceColor: network.netStatusText.includes("Connected") ?
 Kirigami.Theme.highlightColor : Kirigami.Theme.disabledTextColor
+
             onClicked: {
                 sectionNetworks.toggleNetworkSection()
             }

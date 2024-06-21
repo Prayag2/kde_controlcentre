@@ -13,8 +13,6 @@ import "../js/funcs.js" as Funcs
 Lib.CardButton {
     // NIGHT COLOUR CONTROL
     visible: root.showNightColor
-    property var monitor: redMonitor
-    property var inhibitor: inhibitor
 
     Layout.fillWidth: true
     Layout.fillHeight: true
@@ -22,22 +20,18 @@ Lib.CardButton {
 
     Kirigami.Icon {
         anchors.fill: parent
-        source: monitor.running ? "redshift-status-on" : "redshift-status-off"
+        source: control.running ? "redshift-status-on" : "redshift-status-off"
     }
-    onClicked: {
-        Funcs.toggleNightLight();
-    }
+    onClicked: control.toggleInhibition()
 
     // Components //
 
-    NightColorInhibitor {
-        id: inhibitor
-    }
+    /// Plasma 6.1 ///
+    NightLightControl {
+        id: control
 
-    NightColorMonitor {
-        id: redMonitor
-
-        readonly property bool transitioning: monitor.currentTemperature != monitor.targetTemperature
-        readonly property bool hasSwitchingTimes: monitor.mode != 3
+        readonly property bool transitioning: control.currentTemperature != control.targetTemperature
+        readonly property bool hasSwitchingTimes: control.mode != 3
+        readonly property bool togglable: !control.inhibited || control.inhibitedFromApplet
     }
 }

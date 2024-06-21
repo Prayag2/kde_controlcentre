@@ -3,7 +3,7 @@ import QtQuick
 import QtQuick.Layouts
 
 import org.kde.plasma.core as PlasmaCore
-import org.kde.plasma.private.volume as Vol
+import org.kde.plasma.private.volume
 
 import "../lib" as Lib
 import "../js/funcs.js" as Funcs
@@ -15,23 +15,16 @@ Lib.Slider {
     useIconButton: true
     title: i18n("Volume")
 
-    // Volume Feedback
-    Vol.VolumeFeedback {
-        id: feedback
-    }
-
     // Audio source
-    property var sink: paSinkModel.preferredSink
-    readonly property bool sinkAvailable: sink && !(sink && sink.name == "auto_null")
-    readonly property Vol.SinkModel paSinkModel: Vol.SinkModel {
-        id: paSinkModel
-    }
+    property var sink: PreferredDevice.sink
 
-    value: Math.round(sink.volume / Vol.PulseAudio.NormalVolume * 100)
-    secondaryTitle: Math.round(sink.volume / Vol.PulseAudio.NormalVolume * 100) + "%"
+    readonly property bool sinkAvailable: sink && !(sink && sink.name == "auto_null")
+
+    value: Math.round(sink.volume / PulseAudio.NormalVolume * 100)
+    secondaryTitle: Math.round(sink.volume / PulseAudio.NormalVolume * 100) + "%"
 
     // Changes icon based on the current volume percentage
-    source: Funcs.getVolumeIconName(sink.volume, sink.muted)
+    source: getIconForVolume()
 
     onValueChanged: {
         if(!root.playVolumeFeedback || debounce.limit()) {
@@ -42,10 +35,10 @@ Lib.Slider {
     }
     // Update volume
     onMoved: {
-        sink.volume = value * Vol.PulseAudio.NormalVolume / 100
+        sink.volume = value * PulseAudio.NormalVolume / 100
     }
 
-    property var oldVol: 100 * Vol.PulseAudio.NormalVolume / 100
+    property var oldVol: 100 * PulseAudio.NormalVolume / 100
     onClicked: {
         if(value!=0){
             oldVol = sink.volume
@@ -56,6 +49,11 @@ Lib.Slider {
     }
 
     // Components //
+
+    // Volume Feedback
+    VolumeFeedback {
+        id: feedback
+    }
 
     Timer {
         id: debounce
@@ -70,5 +68,19 @@ Lib.Slider {
             debounce.start();
             return false;
         }
+    }
+
+    /// Functions ///
+
+    function getIconForVolume()
+    {
+        return AudioIcon.forVolume(
+            volumePercent(sink.volume),
+            sink.muted, ""
+        );
+    }
+
+    function volumePercent(volume) {
+        return volume / PulseAudio.NormalVolume * 100;
     }
 }
