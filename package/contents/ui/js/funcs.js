@@ -96,24 +96,6 @@ function toggleDoNotDisturb() {
     notificationSettings.save()
 }
 
-function toggleNightLight() {
-    if (!monitor.available) {
-        return;
-    }
-
-    switch (inhibitor.state) {
-        case NightColorInhibitor.Inhibiting:
-        case NightColorInhibitor.Inhibited:
-            inhibitor.uninhibit();
-            break;
-
-            case NightColorInhibitor.Uninhibiting:
-        case NightColorInhibitor.Uninhibited:
-            inhibitor.inhibit();
-            break;
-    }
-}
-
 function volumePercent(volume) {
     return volume / Vol.PulseAudio.NormalVolume * 100
 }
