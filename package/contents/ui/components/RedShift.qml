@@ -13,8 +13,6 @@ import "../js/funcs.js" as Funcs
 Lib.CardButton {
     // NIGHT COLOUR CONTROL
     visible: root.showNightColor
-    property var monitor: redMonitor
-    property var inhibitor: inhibitor
 
     Layout.fillWidth: true
     Layout.fillHeight: true

@@ -23,27 +23,6 @@ function getBtDevice() {
     }
 }
 
-function getVolumeIconName(volume, muted) {
-    var icon = null;
-    const percent = volumePercent(volume);
-
-    if (percent <= 0 || muted) {
-        icon = prefix + "-muted";
-    } else if (percent <= 25) {
-        icon = prefix + "-low";
-    } else if (percent <= 75) {
-        icon = prefix + "-medium";
-    } else if (percent <= highUpperBound) {
-        icon = prefix + "-high";
-    } else if (percent <= veryHighUpperBound) {
-        icon = `-high-warning`;
-    } else {
-        icon = `-high-danger`;
-    }
-
-    return "audio-volume" + icon;
-}
-
 function toggleBluetooth()
 {
     var enable = !btManager.bluetoothOperational;
@@ -94,24 +73,5 @@ function toggleDoNotDisturb() {
 
     notificationSettings.notificationsInhibitedUntil = d
     notificationSettings.save()
-}
-
-function volumePercent(volume) {
-    return volume / Vol.PulseAudio.NormalVolume * 100
-}
-
-function boundVolume(volume) {
-    return Math.max(Vol.PulseAudio.MinimalVolume, Math.min(volume, Vol.PulseAudio.NormalVolume));
-}
-
-function changeVolumeByPercent(volumeObject, deltaPercent) {
-    const oldVolume = volumeObject.volume;
-    const oldPercent = volumePercent(oldVolume);
-    const targetPercent = oldPercent + deltaPercent;
-    const newVolume = boundVolume(Math.round(Vol.PulseAudio.NormalVolume * (targetPercent/100)));
-    const newPercent = volumePercent(newVolume);
-    volumeObject.muted = newPercent == 0;
-    volumeObject.volume = newVolume;
-    return newPercent;
 }
 
