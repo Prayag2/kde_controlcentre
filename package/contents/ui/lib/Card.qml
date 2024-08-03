@@ -20,14 +20,18 @@ Rectangle {
         imagePath: root.enableTransparency ? "translucent/dialogs/background" : "opaque/dialogs/background"
         clip: true
         anchors.fill: parent
-        anchors.topMargin: rect.margins.top * root.scale
-        anchors.leftMargin: rect.margins.left * root.scale
-        anchors.rightMargin: rect.margins.right * root.scale
-        anchors.bottomMargin: rect.margins.bottom * root.scale
+        anchors.topMargin: -rect.inset.top + PlasmaCore.Units.smallSpacing * 1.5
+        anchors.leftMargin: -rect.inset.left  + PlasmaCore.Units.smallSpacing * 1.5
+        anchors.rightMargin: -rect.inset.right  + PlasmaCore.Units.smallSpacing * 1.5
+        anchors.bottomMargin: -rect.inset.bottom  + PlasmaCore.Units.smallSpacing * 1.5
 
         Item {
             id: dataContainer
             anchors.fill: parent
+            anchors.topMargin: rect.margins.top-rect.inset.top
+            anchors.leftMargin: rect.margins.left -rect.inset.left
+            anchors.rightMargin: rect.margins.right -rect.inset.right
+            anchors.bottomMargin: rect.margins.bottom -rect.inset.bottom
         }
     }
 }
