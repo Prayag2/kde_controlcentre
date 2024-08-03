@@ -39,9 +39,12 @@ Lib.CardButton {
         function swapColorScheme() {
             var usingDark = isDarkTheme();
             var colorSchemeName = usingDark ? Plasmoid.configuration.lightTheme : Plasmoid.configuration.darkTheme;
+            var plasmaThemeName = usingDark ? Plasmoid.configuration.lightPlasmaTheme : Plasmoid.configuration.darkPlasmaTheme;
+
             Plasmoid.configuration.isDarkTheme = !usingDark ? 1 : 0;
 
-            exec("plasma-apply-colorscheme " + colorSchemeName)
+            exec("plasma-apply-colorscheme " + colorSchemeName +
+                ";plasma-apply-desktoptheme " + plasmaThemeName);
         }
     }
 
