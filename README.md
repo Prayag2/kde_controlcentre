@@ -38,12 +38,23 @@ You can install it on Arch using: <br />
 6. Click on "Install" and you're done!
 
 #### From this repository (Not Stable!)
+##### For Plasma 5
 1. Clone this repository then 'cd' into the root project directory.
-2. Install it using ```plasmapkg2 -i package```
-3. Or update it with ```git pull; plasmapkg2 -u package```
+2. Install it using ```plasmapkg2 -i package```.
+3. Or update it with ```git pull; plasmapkg2 -u package```.
 <br />
 
 *Notes: You can find the files at `~/.local/share/plasma/plasmoids/`. You can remove Control Centre by deleting **'com.github.prayag2.controlcentre'** directly, or by using the 'Add Widgets' interface. After updating, make sure to restart plasma using `plasmashell --replace` to see the changes.*
+
+##### For Plasma 6
+1. Clone this repository then 'cd' into the root project directory.
+2. Install it using ```kpackagetool5 -i package```, if the command isn't available, install ```kpackage5```.
+3. Or update it with ```git pull; kpackagetool5 -u package```.
+<br />
+
+*Notes: if the command doesn't install the widget correctly, you can point the installation directory like such: `kpackagetool5 -p ~/.local/share/plasma/plasmoids/ -i package`. If you get a type error, you can specify it like this `kpackagetool5 -t Plasma/Applet -i package`. You put these together like so `kpackagetool5 -p ~/.local/share/plasma/plasmoids/ -t Plasma/Applet -i package`.*
+
+For Arch plasma 6 users, you can also install it from the aur: [plasma6-kde_controlcentre](https://aur.archlinux.org/packages/plasma6-kde_controlcentre) (community maintained).
 
 ## Usage
 1. Right click on the desktop.
