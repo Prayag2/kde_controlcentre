@@ -41,7 +41,10 @@ Lib.CardButton {
             var colorSchemeName = usingDark ? Plasmoid.configuration.lightTheme : Plasmoid.configuration.darkTheme;
             Plasmoid.configuration.isDarkTheme = !usingDark ? 1 : 0;
 
-            exec("plasma-apply-colorscheme " + colorSchemeName)
+            // Single-quote the scheme name so a maliciously-named installed
+            // scheme cannot inject shell commands through the executable engine.
+            var safe = "'" + String(colorSchemeName).replace(/'/g, "'\\''") + "'";
+            exec("plasma-apply-colorscheme " + safe)
         }
     }
 

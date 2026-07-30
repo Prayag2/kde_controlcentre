@@ -17,7 +17,7 @@ function getBtDevice() {
             return i18n("Offline");
         }
     } else if (connectedDevices.length >= 1) {
-        return i18n(connectedDevices[0].name)
+        return connectedDevices[0].name
     } else {
         return i18n("Not Connected");
     }
@@ -61,7 +61,6 @@ function checkInhibition() {
     if (!NotificationManager.Server.valid) {
         return false;
     }
-    console.log("pass")
     var inhibitedUntil = notificationSettings.notificationsInhibitedUntil;
     if (!isNaN(inhibitedUntil.getTime())) {
         inhibited |= (Date.now() < inhibitedUntil.getTime());

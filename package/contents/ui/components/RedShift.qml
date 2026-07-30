@@ -20,18 +20,10 @@ Lib.CardButton {
 
     Kirigami.Icon {
         anchors.fill: parent
-        source: control.running ? "redshift-status-on" : "redshift-status-off"
+        // inhibited == Night Light is paused, so "on" is the un-inhibited state.
+        source: NightLightInhibitor.inhibited ? "redshift-status-off" : "redshift-status-on"
     }
-    onClicked: control.toggleInhibition()
-
-    // Components //
-
-    /// Plasma 6.1 ///
-    NightLightControl {
-        id: control
-
-        readonly property bool transitioning: control.currentTemperature != control.targetTemperature
-        readonly property bool hasSwitchingTimes: control.mode != 3
-        readonly property bool togglable: !control.inhibited || control.inhibitedFromApplet
-    }
+    // Plasma 6.4+ replaced the instantiable NightLightControl with the
+    // NightLightInhibitor singleton (inhibited bool + toggleInhibition()).
+    onClicked: NightLightInhibitor.toggleInhibition()
 }
