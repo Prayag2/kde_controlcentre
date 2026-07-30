@@ -12,14 +12,11 @@
         "Id": "com.github.prayag2.controlcentre",
         "License": "GPLv3",
         "Name": "Control Centre",
-        "ServiceTypes": [
-            "Plasma/Applet"
-        ],
         "Version": "0.1.0",
         "Website": "https://github.com/prayag2/kde_controlcentre"
 
     },
-    "X-Plasma-Provides": "org.kde.plasma.multimediacontrols,org.kde.plasma.powermanagement,org.kde.plasma.notifications",
+    "X-Plasma-Provides": "org.kde.plasma.multimediacontrols",
     "X-Plasma-NotificationArea": "true",
-    "X-Plasma-API-Minimum-Version": "6.0"
+    "X-Plasma-API-Minimum-Version": "6.1"
 }
