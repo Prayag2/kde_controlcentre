@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Fixed
 - Icons now follow the colour scheme correctly.
+- Night Light toggle now works on Plasma 6.4+ (`NightLightControl` was replaced by the `NightLightInhibitor` singleton). This previously made the whole widget fail to load.
+- Brightness slider now works on Plasma 6.4+ (ported from the removed `ScreenBrightnessControl.brightness`/`brightnessMax` scalars to the per-display model).
+- The widget no longer falsely declares the `notifications` and `powermanagement` providers, which caused the System Tray to hide the stock notification and battery applets.
+- The colour scheme name is now shell-quoted before being applied, preventing command injection from a maliciously named scheme.
+
+### Removed
+- Unused `js/brightness.js` and leftover debug logging.
 
 ### Added
 - Option to play a feedback sound when changing volume. See [#32](https://github.com/Prayag2/kde_controlcentre/issues/32)
